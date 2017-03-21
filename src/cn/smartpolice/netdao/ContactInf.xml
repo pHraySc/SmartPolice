@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-11-8 11:08:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="cn.smartpolice.netdao.ContactInf" table="contact_inf">
+		<id name= "contactId" type="int">
+			<column name="increment"/>
+			<generator class="assigned"></generator>
+		</id>
+		<property name="masterId" type="int">
+		 	<column name="masteid"/>
+		</property>
+		<property name="contactedId">
+			<column name="contactedid"/>
+		</property>
+		<property name="group" type="java.lang.String">
+			<column name="group"/>
+		</property>
+		<property name="aliasid" type="java.lang.String">
+			<column name="aliasid"/>
+		</property>
+		<property name="setTime" type="java.util.Date">
+			<column name="settime"/>
+		</property>
+	</class>
+</hibernate-mapping>

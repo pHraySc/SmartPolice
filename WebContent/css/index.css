@@ -1,0 +1,195 @@
+@CHARSET "UTF-8";
+		a{
+			text-decoration: none;
+		}
+		.content{
+		position:relative;
+		}
+		.news{
+			position: absolute;
+			width: 354px;
+			height: 330px;
+			top:460px;
+		}
+		.news-top{
+			position: relative;
+			width: 354px;
+			height: 40px;
+			background-color: #3c8dbc;
+		}
+		.news-top span{
+			position: relative;
+			color: white;
+			line-height: 40px;
+			font-size: 16px;
+			left: 20px;
+		}
+		.wel{
+			left:10px;
+			top: 30px;
+		}
+		.news-text{
+			position: relative;
+			width: 350px;
+			min-height: 250px;
+			border-left: 2px solid lightgray;
+			border-right: 2px solid lightgray;
+			border-bottom: 2px solid lightgray;
+		}
+		.news-text ul{
+			font-size: 14px;
+			position: relative;
+			top: 15px;
+			left: 25px;
+			color: #575757;
+		}
+		.news-text li{
+			font-size: 14px;
+			margin-bottom: 12px;
+		}
+		.news-text-active{
+			color: orange;
+		}
+		.ents{
+			position: absolute;
+			width: 550px;
+			height: 330px;
+			top: 418px;
+			left: 600px;
+		}
+		.ents-top{
+			position: relative;
+			width: 354px;
+			height: 40px;
+			line-height: 30px;
+			font-size: 16px;
+			left: 20px;
+		}
+		.ents-table{
+			position:relative;
+			width: 550px;
+			height: 290px;
+			border: 2px solid lightgray;
+			left:20px;
+		}
+		table{
+			width: 92%;
+			color: #575757;
+		}
+		td{
+			position: relative;
+			left: 20px;
+			height:50px;
+			border-bottom: 1px solid lightgray;
+		}
+		#box{
+			position:relative;
+			height: 290px;
+			overflow: auto;
+			overflow-y:hidden;
+		}
+		.wel-text{
+			font-size: 16px;
+			color: #636363;
+		}
+		.wel-text span{
+		color: #CD3700;
+		}
+		#user-time{
+			font-size: 14px;
+			color: #969696;
+		}
+		.new-text{
+			font-size: 16px;
+			color: #636363;
+			margin-top: 20px;
+		}
+		.new-text span{
+			color: #CD3700;
+		}
+		.new-text a{
+			font-size: 13px;
+			margin-left: 30px;
+			color: #1874CD;
+			text-decoration: none;
+		}
+		.dev-text{
+			font-size: 16px;
+			color: #636363;
+			margin-top: 20px;
+		}
+		.dev-text span{
+			color: #CD3700;
+		}
+		.dev-text a{
+			font-size: 13px;
+			margin-left: 30px;
+			color: #1874CD;
+			text-decoration: none;
+		}
+		.info_left{
+		top:250px;
+		position:absolute;
+		}
+		.img-wel{
+			position: absolute;
+			width: 390px;
+			height: 120px;
+			border: 1px solid lightgray;
+			top: 250px;
+			left: 750px;
+			box-shadow:3px 3px 8px lightgray;
+		}
+		.img-wel span {
+			position: relative;
+			font-size: 15px;
+			color: #545454;
+		}
+		.img-wel a:hover {
+			background-color: #CCCCCC;
+		}
+		.img-wel a:active {
+			background-color: #CCCCFF;
+		}
+		.img-box1{
+			position: relative;
+			width: 100px;
+			height: 100px;
+			float: left;
+			left:20px;
+			top:10px;
+			display:block;
+		}
+		.cbox-1{
+			position: relative;
+			left: 20px;
+			top: 9px;
+		}
+		.img-box2{
+			position: relative;
+			width: 100px;
+			height: 100px;
+			float: left;
+			left:46px;
+			top:10px;
+			display:block;
+		}
+		.cbox-2{
+			position: relative;
+			left: 20px;
+			top: 9px;
+		}
+		.img-box3{
+			position: relative;
+			width: 100px;
+			height: 100px;
+			float: left;
+			left:70px;
+			top:10px;
+			display:block;
+		}
+		.cbox-4{
+			position: relative;
+			left: 20px;
+			top: 9px;
+		}

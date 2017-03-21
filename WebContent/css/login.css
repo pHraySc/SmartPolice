@@ -1,0 +1,135 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: "微软雅黑";
+}
+body{
+	height:100%; 
+	overflow:hidden; 
+	margin:0px;
+	padding:0px;
+}
+.page{
+	height:100%;  
+	position:absolute; 
+	width:100%;
+}
+.box {
+	position: absolute;
+	width: 590px;
+	height: 440px;
+	left: 29%;
+	top: 10%;
+}
+.warning-l{
+	position: absolute;
+	color:red;
+	width:100px;
+	top:38px;
+	left:45px;
+}
+.login-box {
+	position: absolute;
+	width: 590px;
+	height: 310px;
+	top:130px;
+	border: white solid 3px;
+	background-color: #24739D;
+}
+.login-img {
+	position: absolute;
+	width: 128px;
+	height: 128px;
+	left: 22%;
+	top: 65px;
+	z-index: 1;
+}
+.login-box-w {
+	position: absolute;
+	width: 300px;
+	left: 40px;
+	top: 100px;
+}
+.l {
+	position: absolute;
+	width: 2px;
+	height: 230px;
+	left: 380px;
+	top: 40px;
+	background-color: white;
+}
+.text {
+	position: absolute;
+	left: 412px;
+	top: 60px;
+	color: white;
+}
+.text ul {
+	margin-left: 20px;
+}
+.btn-login {
+	background-color: #288FB4;
+	color: white;
+	height: 35px;
+	position: relative;
+	top: 30px;
+	left: 232px;
+}
+.btn-reg {
+	background-color: #319595;
+	color: white;
+	height: 35px;
+	position: relative;
+	top: 22px;
+	left: 222px;
+}
+.btn-reg2 {
+	background-color: #3399FF;
+	color: white;
+	height: 35px;
+	position: absolute;
+	left: 100px;
+	top: 20px;
+}
+.forget {
+	position: absolute;
+	top: 235px;
+	left: 40px;
+}
+.registered {
+	position: absolute;
+	top: 210px;
+	left: 220px;
+}
+.reg-box {
+	position: absolute;
+	width: 450px;
+	height: 490px;
+	left: 34%;
+	top: 10%;
+	border: white solid 4px;
+	background-color: #24739D;
+	display: none;
+
+}
+.reg-box-w {
+	position: absolute;
+	width: 270px;
+	left: 148px;
+	top: 10px;
+}
+.back {
+	position: absolute;
+	top: 420px;
+	left: -70px;
+}
+.btn-back{
+	color: white;
+	width: 63px;
+	height: 35px;
+	background-color: orange;
+}
+.warning{
+	color: red;
+	position: absolute;
+}

@@ -1,0 +1,225 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	font-family: "微软雅黑";
+}
+body {
+	background-color: #F4FFFF;
+}
+.head {
+	width: 100%;
+	height: 120px;
+	background: -webkit-linear-gradient(90deg, #065289, #056DAE);
+	/* Safari 5.1 - 6.0 */
+	
+	background: -o-linear-gradient(90deg, #065289, #056DAE);
+	/* Opera 11.1 - 12.0 */
+	
+	background: -moz-linear-gradient(90deg, #065289, #056DAE);
+	/* Firefox 3.6 - 15 */
+	
+	background: linear-gradient(90deg, #065289, #056DAE);
+	/* 鏍囧噯鐨勮娉� */
+}
+.head span {
+	position: absolute;
+	color: white;
+	font-size: 36px;
+	left: 85px;
+	top: 35px;
+}
+.area {
+	position: absolute;
+	top: 15px;
+	left: 85%;
+}
+.area a {
+	color: white;
+}
+.area a:hover {
+	color: orange;
+}
+.glyphicon-home,
+.glyphicon-off{
+	margin-right:8px;
+}
+.head-user {
+	position: absolute;
+	left: 74%;
+	top: 56px;
+	height: 55px;
+	width: 300px;
+	background-color: #065188;
+	border-radius: 30px;
+}
+.head-user span {
+	position: absolute;
+	left: 105px;
+	top: 17px;
+	color: white;
+	width:70px;
+	text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+	white-space: nowrap;
+}
+.head-user a {
+	position: absolute;
+	left: 210px;
+	top: 17px;
+	color: white;
+}
+.glyphicon-comment {
+	color: white;
+	font-size: 18px;
+	position: absolute;
+	left: 180px;
+	top: 20px;
+}
+.menu {
+	position: absolute;
+	height: 900px;
+	width: 243px;
+	background-color: #F2F2F2;
+}
+.menu-head {
+	position: absolute;
+	width: 243px;
+	height: 60px;
+	background: -webkit-linear-gradient(180deg, #3399CC, #0066CC);
+	/* Safari 5.1 - 6.0 */
+	
+	background: -o-linear-gradient(180deg, #3399CC, #0066CC);
+	/* Opera 11.1 - 12.0 */
+	
+	background: -moz-linear-gradient(180deg, #3399CC, #0066CC);
+	/* Firefox 3.6 - 15 */
+	
+	background: linear-gradient(180deg, #3399CC, #0066CC);
+	/* 鏍囧噯鐨勮娉� */
+}
+.menu-head span {
+	color: white;
+	font-size: 22px;
+	position: relative;
+	left: 50px;
+	top: 13px;
+}
+.glyphicon-list {
+	color: white;
+	font-size: 24px;
+	position: relative;
+	left: -10px;
+	top: 4px;
+}
+.menu-l {
+	position: absolute;
+	top: 60px;
+}
+.glyphicon-chevron-right {
+	margin-left: 65px;
+	font-size: 12px;
+	color: #5E5E5E;
+}
+.glyphicon-chevron-right-after {
+	color: white;
+	transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	/* IE 9 */	
+	-webkit-transform: rotate(90deg);
+	/* Safari and Chrome */
+}
+.hide-box{
+	position: absolute;
+	width: 243px;
+	height: 50px;
+	z-index: 100;
+	display: none;
+}
+.menu-list {
+	width: 243px;
+	background-color: #D4E7F0;
+	border-bottom: solid 1px #BDCED7;
+	position: relative;
+}
+.menu-list a:hover {
+	position: relative;
+	left: 5px;
+}
+.menu-list a {
+	color: #333333;
+	font-size: 16px;
+	display: block;
+	line-height: 50px;
+	margin-left: 40px;
+}
+#menu1-son{
+	width: 243px;
+	background-color: #F1F1F1;
+	height: 121px;
+	display: none;
+}
+#menu2-son{
+	width: 243px;
+	background-color: #F1F1F1;
+	height: 121px;
+	display: none;
+}
+#menu3-son{
+	width: 243px;
+	background-color: #F1F1F1;
+	height: 121px;
+	display: none;
+}
+#menu4-son{
+	width: 243px;
+	background-color: #F1F1F1;
+	height: 81px;
+	display: none;
+}
+#menu5-son{
+	width: 243px;
+	background-color: #F1F1F1;
+	height: 161px;
+	display: none;
+}
+#menu6-son{
+	width: 243px;
+	background-color: #F1F1F1;
+	height: 41px;
+	display: none;
+}
+.menu-son-up li {
+	border-top: solid 1px gainsboro;
+}
+.menu-son-up a {
+	color: #5E5E5E;
+	font-size: 14px;
+	display: block;
+	line-height: 40px;
+	margin-left: 63px;
+}
+.menu-son-up a:hover {
+	color: #333333;
+	font-size: 15px;
+}
+
+.bottom {
+	background-color: #125481;
+	position: absolute;
+	top: 1020px;
+	width: 100%;
+	height: 110px;
+	color: white;
+}
+.bottom span {
+	position: relative;
+	left: 20%;
+	top: 50px;
+}
+.right {
+	position: absolute;
+	width: 81%;
+	height: 900px;
+	left: 243px;
+}

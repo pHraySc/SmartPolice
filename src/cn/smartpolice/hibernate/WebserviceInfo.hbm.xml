@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-2 10:57:10 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="cn.smartpolice.hibernate.WebserviceInfo" table="WEBSERVICEINFO">
+        <id name="serverid" type="int">
+            <column name="SERVERID" />
+            <generator class="assigned" />
+        </id>
+        <property name="type" type="int">
+            <column name="TYPE" />
+        </property>
+        <property name="demo" type="java.lang.String">
+            <column name="DEMO" />
+        </property>
+        <property name="memory" type="int">
+            <column name="MEMORY" />
+        </property>
+        <property name="CPU" type="java.lang.String">
+            <column name="CPU" />
+        </property>
+        <property name="ip" type="int">
+            <column name="IP" />
+        </property>
+        <property name="port" type="int">
+            <column name="PORT" />
+        </property>
+        <property name="longitude" type="java.lang.String">
+            <column name="LONGITUDE" />
+        </property>
+        <property name="latitude" type="java.lang.String">
+            <column name="LATITUDE" />
+        </property>
+        <property name="manager" type="int">
+            <column name="MANAGER" />
+        </property>
+        <many-to-one name="managerID" class="cn.smartpolice.hibernate.ManagerInfo" access="field" fetch="join">
+            <column name="MANAGERID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

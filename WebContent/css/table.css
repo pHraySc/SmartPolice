@@ -1,0 +1,189 @@
+* {
+	font-family: "寰蒋闆呴粦";
+}
+body {
+	background-color: #F4FFFF;
+}
+.breadcrumb {
+	position: absolute;
+	width: 800px;
+}
+.table-header {
+	background-color: #307ecc;
+	color: #FFF;
+	font-size: 15px;
+	line-height: 38px;
+	padding-left: 12px;
+	margin-bottom: 1px;
+}
+th,
+td,
+.table-bordered {
+	border-radius: 0!important
+}
+.table thead tr {
+	color: #707070;
+	font-weight: normal;
+	background: #f2f2f2;
+	background-image: -webkit-gradient(linear, left 0, left 100%, from(#f8f8f8), to(#ececec));
+	background-image: -webkit-linear-gradient(top, #f8f8f8, 0%, #ececec, 100%);
+	background-image: -moz-linear-gradient(top, #f8f8f8 0, #ececec 100%);
+	background-image: linear-gradient(to bottom, #f8f8f8 0, #ececec 100%);
+	background-repeat: repeat-x;
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fff8f8f8', endColorstr='#ffececec', GradientType=0)
+}
+.table thead tr th {
+	border-color: #DDD;
+	font-weight: bold
+}
+.table thead tr th [class*="icon-"]:first-child {
+	margin-right: 2px
+}
+.table thead tr th:first-child {
+	border-left-color: #f1f1f1
+}
+.table thead tr th:left-child {
+	border-right-color: #f1f1f1
+}
+.table.table-bordered thead tr th {
+	vertical-align: middle
+}
+.table.table-bordered thead tr th:first-child {
+	border-left-color: #DDD
+}
+th.center,
+td.center {
+	text-align: center
+}
+th .lbl,
+td .lbl {
+	margin-bottom: 0
+}
+th .lbl:only-child,
+td .lbl:only-child {
+	vertical-align: top
+}
+.table-header .close {
+	margin-right: 8px;
+	margin-top: 0;
+	opacity: .45;
+	filter: alpha(opacity=45)
+}
+.table-header .close:hover {
+	opacity: .75;
+	filter: alpha(opacity=75)
+}
+.dataTables_length select {
+	width: 70px;
+	height: 25px;
+	padding: 2px 3px
+}
+.dataTables_length label {
+	font-weight: normal
+}
+.dataTables_filter {
+	text-align: right
+}
+.dataTables_filter input[type=text] {
+	width: 125px;
+	height: 18px;
+	line-height: 18px;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	padding: 4px 6px
+}
+.dataTables_filter label {
+	font-weight: normal
+}
+.dataTables_info {
+	font-size: 14px
+}
+.dataTables_paginate {
+	text-align: right
+}
+.dataTables_paginate .pagination {
+	margin: 0 12px
+}
+.dataTables_wrapper label {
+	display: inline-block;
+	font-size: 13px
+}
+.dataTables_wrapper input[type=text],
+.dataTables_wrapper select {
+	margin-bottom: 0!important;
+	margin: 0 4px
+}
+.dataTables_wrapper .row {
+	margin: 0;
+	width: 100%;
+}
+.dataTables_wrapper .row:first-child {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background-color: #eff3f8
+}
+.dataTables_wrapper .row:first-child+.dataTable {
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD
+}
+.dataTables_wrapper .row:last-child {
+	border-top: 1px solid #DDD;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background-color: #eff3f8;
+	border-bottom: 1px solid #DDD
+}
+.dataTable {
+	margin-bottom: 0
+}
+.dataTable th[class*=sort] {
+	cursor: pointer
+}
+.dataTable th[class*=sort]:after {
+	content: "\f0dc";
+	display: inline-block;
+	color: #555;
+	font-family: FontAwesome;
+	font-size: 13px;
+	font-weight: normal;
+	float: right;
+	margin-right: 4px;
+	position: relative
+}
+.dataTable th[class*=sort]:hover {
+	color: #547ea8
+}
+.dataTable th[class*=sorting_] {
+	color: #307ecc
+}
+.dataTable th.sorting_desc,
+.dataTable th.sorting_asc {
+	background-image: -webkit-gradient(linear, left 0, left 100%, from(#eff3f8), to(#e3e7ed));
+	background-image: -webkit-linear-gradient(top, #eff3f8, 0%, #e3e7ed, 100%);
+	background-image: -moz-linear-gradient(top, #eff3f8 0, #e3e7ed 100%);
+	background-image: linear-gradient(to bottom, #eff3f8 0, #e3e7ed 100%);
+	background-repeat: repeat-x;
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffeff3f8', endColorstr='#ffe3e7ed', GradientType=0)
+}
+.dataTable th.sorting_desc:after {
+	content: "\f0dd";
+	top: -6px;
+	color: #307ecc
+}
+.dataTable th.sorting_asc:after {
+	content: "\f0de";
+	top: 4px;
+	color: #307ecc
+}
+.dataTable th.sorting_disabled {
+	cursor: inherit
+}
+.dataTable th.sorting_disabled:after {
+	display: none
+}
+td { 
+    width: 1px; 
+	white-space: nowrap; /* 自适应宽度*/ 
+	word-break:  keep-all; /* 避免长单词截断，保持全部 */ 
+} 

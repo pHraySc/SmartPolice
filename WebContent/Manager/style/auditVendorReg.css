@@ -1,0 +1,176 @@
+@CHARSET "UTF-8";
+@CHARSET "UTF-8";
+.main_body .content{
+	float:right;
+	width:79%;
+}
+.position{
+	border-bottom: 1px solid #ccc;
+}
+.operation{
+	width:99%;
+	margin-top:18px;
+}
+.operation .operating{
+	display:inline-block;
+	margin-left:20px;
+	background:#e8e8e8;
+	width:97%;
+}
+.operation .operating li{
+	float:left;
+	line-height:30px;
+	padding:0 15px;
+	display:inline-block;
+	font-size:12px;	
+	cursor: pointer;
+}
+.operation .operating li:hover{
+	background:#ccc;
+}
+.operation .operating li a{
+	color:#333;
+}
+.operation .operating li a b{
+    height:12px;
+	width:12px;
+	display:inline-block;
+	vertical-align: middle;
+    margin-bottom: 4px;
+    margin-right: 6px;
+}
+.operation .operating li:first-child a b{
+	background:url(../icon_m/icon.png)no-repeat;
+	background-position:-67px -213px;
+}
+.operation .operating li:nth-child(2) a b{
+	background:url(../icon_m/icon.png)no-repeat;
+	background-position:-79px -213px;
+}
+.operation .operating li:nth-child(3) a b{
+	background:url(../icon_m/icon.png)no-repeat;
+	background-position:-91px -213px;
+}
+.operation .operating li:nth-child(4) a b{
+	background:url(../icon_m/icon.png)no-repeat;
+	background-position:-103px -213px;
+}
+.operation .operating li:nth-child(5) a b{
+	background:url(../icon_m/icon.png)no-repeat;
+	background-position:-116px -213px;
+}
+.table_header_title{
+	float:left;
+	margin-left:16px;
+	margin-top:30px;
+}
+.table_header_title h3{
+	font-size:12px;
+	font-weight:normal;
+	color:#5A5959;
+}
+.search{
+	line-height:30px;
+	margin:10px 17px 10px 0;
+	
+}
+.search .search_box{
+	padding:0 5px;
+	color:#666;
+	height:26px;
+}
+.search .button{
+	height:30px;
+	padding:0px 14px;
+}
+/* 表格样式 */
+.form{
+	margin:20px auto;
+	width:97%;
+}
+.form ul li{
+	display:inline-block;
+	line-height:30px;
+	padding:0 10px;
+}
+.form table{
+	width:100%;
+	text-align:center;
+	font-size:12px;
+}
+.form table th{
+	background:#276ca3;
+	color:#fff;
+	font-size:12px;
+	padding:5px 0px;
+	border-right:1px solid #b8edff;
+}
+.form table tr th:last-child {
+	border-right:1px solid #ccc;
+	width:20%;
+}
+.form table tr{
+	border:1px solid #ccc;
+}
+.form table td ul{
+	display:inline-block;
+	text-align:center;
+}
+.page_footer{
+	display:inline-block;
+	margin-top:10px;
+	float:right;
+	font-size:12px;
+	margin-bottom:30px;
+}
+.page_footer p{
+	display:inline-block;
+}
+.page_footer a {
+	border:1px solid #5791bf;
+	padding:2px 8px;
+	text-align:center;
+}
+.page_active{
+	background:#5791bf;
+	color:#fff;
+}
+.page_footer a:hover{
+	background:#5791bf;
+	color:#fff;
+}
+.jump{
+	display:inline-block;
+}
+.jump input{
+	width:34px;
+	padding:1px 2px;
+}
+.table_text td .form_icon_del,
+.table_text td .form_icon_mod,
+.table_text td .form_icon_check{
+	
+	display:inline-block;
+	height:11px;
+	width:11px;
+}
+.table_text td a .form_icon_del {
+	
+	background:url(../icon_m/icon.png)no-repeat;
+	background-position:-116px -214px;
+}
+.table_text td a .form_icon_mod {
+	
+	background:url(../icon_m/icon.png)no-repeat;
+	background-position:-116px -214px;
+}
+.table_text td a .form_icon_check {
+	
+	background:url(../icon_m/icon.png)no-repeat;
+	background-position:-116px -214px;
+}
+.table_text td li a:hover{
+	    text-decoration: underline;
+}
+
+

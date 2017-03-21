@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-11-8 11:08:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="cn.smartpolice.netdao.UserInf" table="user_inf">
+		<id name="userID" type="int">
+			<column name="userid" />
+			<generator class="assigned"></generator>
+		</id>
+		<property name="userName" type="java.lang.String">
+			<column name="username"/>
+		</property>
+		<property name="password" type="java.lang.String">
+			<column name="password"/>
+		</property>
+		<property name="set" type="java.lang.String">
+			<column name="set"/>
+		</property>
+		<property name="regDate" type="java.util.Date">
+			<column name="regdate"/>
+		</property>
+		<property name="authority" type="java.lang.String">
+			<column name="authority"/>
+		</property>
+		<property name="state" type="java.lang.String">
+			<column name="state"/>
+		</property>
+		<property name="name" type="java.lang.String">
+			<column name="name"/>
+		</property>
+		<property name="birth" type="java.util.Date">
+			<column name="birth"/>
+		</property>
+		<property name="sex" type="java.lang.Boolean">
+			<column name="sex"/>
+		</property>
+		<property name="type" type="java.lang.String">
+			<column name="type"/>
+		</property>
+		<property name="mail" type="java.lang.String">
+			<column name="mail"/>
+		</property>
+		<property name="mphone" type="java.lang.String">
+			<column name="mphone"/>
+		</property>
+	</class>
+</hibernate-mapping>

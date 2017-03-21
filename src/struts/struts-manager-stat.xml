@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="stat" extends="struts-default">
+		<action name="managerStatCompany" method="StatCompany" class="managerStatAction">
+			<result name="success">/Manager/manager_stat_company.jsp</result>
+			
+		</action>
+		<action name="managerStatDevice" method="StatDevice" class="managerStatAction">
+			<result name="success">/Manager/manager_stat_device.jsp</result>
+			
+		</action>
+		<action name="managerStatMoveDevice" method="StatMoveDevice" class="managerStatAction">
+			<result name="success">/Manager/manager_stat_movedevice.jsp</result>
+			
+		</action>	
+		<action name="managerStatUserinfo" method="StatUserinfo" class="managerStatAction">
+			<result name="success">/Manager/manager_stat_userinfo.jsp</result>
+			
+		</action>
+					
+	</package> 
+</struts>

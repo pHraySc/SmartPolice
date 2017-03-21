@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-2 10:57:10 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="cn.smartpolice.hibernate.DeviceAudit" table="DEVICEAUDIT">
+        <id name="auditId" type="int">
+            <column name="AUDITID" />
+            <generator class="assigned" />
+        </id>
+        <property name="deviceName" type="java.lang.String">
+            <column name="DEVICENAME" />
+        </property>
+        <property name="code" type="java.lang.String">
+            <column name="CODE" />
+        </property>
+        <property name="demo" type="java.lang.String">
+            <column name="DEMO" />
+        </property>
+        <many-to-one name="companyId" class="cn.smartpolice.hibernate.CompanyInfo" fetch="join">
+            <column name="COMPANYID" />
+        </many-to-one>
+        <property name="date" type="java.sql.Date">
+            <column name="DATE" />
+        </property>
+        <many-to-one name="checkId" class="cn.smartpolice.hibernate.ManagerInfo" fetch="join">
+            <column name="CHECKID" />
+        </many-to-one>
+        <property name="checkDate" type="java.sql.Date">
+            <column name="CHECKDATE" />
+        </property>
+        <property name="state" type="java.lang.String">
+            <column name="STATE" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" />
+        </property>
+    </class>
+</hibernate-mapping>

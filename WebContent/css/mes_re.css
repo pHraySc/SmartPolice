@@ -1,0 +1,99 @@
+@CHARSET "UTF-8";
+body {
+				margin: 0;
+				padding: 0;
+				font-family: "微软雅黑";
+			}
+			.news {
+				position: absolute;
+				width: 750px;
+				height: 650px;
+				left: 7%;
+				top: 100px;
+			}
+			.news-box {
+				width: 745px;
+				height: 620px;
+				border-radius: 10px;
+			}
+			.news-box-page {
+				width: 720px;
+				height: 560px;
+				position: absolute;
+				top: 45px;
+				left: 10px;
+				background-color: lightgray;
+				border-bottom-right-radius: 10px;
+				border-bottom-left-radius: 10px;
+			}
+			.re-user{
+				position: relative;
+				top: 30px;
+				left: 38px;
+			}
+			.news-text-head {
+				position: relative;
+				top: 60px;
+				left: 36px;
+			}
+			.news-box-top{
+				position: absolute;
+				left: 10px;
+				width: 720px;
+				height: 45px;
+				background-color: #339999;
+			}
+			.news-box-top span{
+				line-height: 45px;
+				font-size: 16px;
+				color: white;
+				position: absolute;
+				left: 76px;
+			}
+			.glyphicon-comment{
+				color: white;
+				font-size: 18px;
+				position: absolute;
+				left: 40px;
+				top: 16px;
+			}
+			.news-box-page span {
+				font-weight: bold;
+				margin-right: 10px;
+				color: #666666;
+				font-size: 14px;
+			}
+			.text {
+				position: relative;
+				left: 38px;
+				top: 100px;
+				width: 500px;
+				height: 200px;
+			}
+			textarea {
+				width: 640px;
+				height: 200px;
+			}
+			.btn-gray{
+			position: relative;
+				top: 273px;
+				left: 490px;
+				width: 80px;
+				height: 30px;
+				z-index: 10;
+			}
+			.btn-success {
+				position: relative;
+				top: 273px;
+				left: 505px;
+				width: 80px;
+				height: 30px;
+				z-index: 10;
+			}
+			.bottom {
+				position: absolute;
+				top: 510px;
+				height: 50px;
+				width: 720px;
+				background-color: #6699CC;
+			}

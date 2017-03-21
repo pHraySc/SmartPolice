@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-11-8 11:08:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="cn.smartpolice.netdao.ContactWait" table="contact_wait">
+		<id name="cwid" type="int">
+		<column name="cwid"/>
+		<generator class="increment"></generator> 
+		</id>
+		<property name="masterId" type="int">
+			<column name="masterid"/>		
+		</property>
+		<property name="contactedId" type="int">
+			<column name="contactedid"/>
+		</property>
+		<property name="group" type="java.lang.String">
+			<column name="group"/>
+		</property>
+		<property name="applyTime" type="java.util.Date">
+			<column name="applytime"/>
+		</property>
+		<property name="state" type="java.lang.Boolean">
+			<column name="state"/>
+		</property>
+		<property name="message" type="java.lang.String">
+			<column name="message"/>
+		</property>
+	</class>
+</hibernate-mapping>

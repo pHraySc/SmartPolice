@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-2 10:57:10 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="cn.smartpolice.hibernate.SoftInfo" table="SOFTINFO">
+        <id name="softid" type="int">
+            <column name="SOFTID" />
+            <generator class="assigned" />
+        </id>
+        <property name="type" type="int">
+            <column name="TYPE" />
+        </property>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="version" type="java.lang.String">
+            <column name="VERSION" />
+        </property>
+        <property name="serial" type="java.lang.String">
+            <column name="SERIAL" />
+        </property>
+        <property name="date" type="java.util.Date">
+            <column name="DATE" />
+        </property>
+        <property name="uploadid" type="int">
+            <column name="UPLOADID" />
+        </property>
+        <property name="md5" type="java.lang.String">
+            <column name="MD5" />
+        </property>
+        <property name="size" type="int">
+            <column name="SIZE" />
+        </property>
+        <property name="url" type="java.lang.String">
+            <column name="URL" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Smart Police</display-name>
+  <filter>
+    <filter-name>SmartPolice</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>SmartPolice</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/applicationContext.xml</param-value>
+  </context-param>
+ <!-- 自定义监听器 处理网络通信 -->
+  <listener>    
+    <listener-class>cn.smartpolice.net.NetServerListener</listener-class>    
+  </listener>
+  <context-param>
+    <param-name>SysCfgInfoLocation</param-name>
+    <param-value>WEB-INF/classes/SysCfgInfo.xml</param-value><!-- 系统配置文件路径必须这样写 -->
+  </context-param>
+  
+  <welcome-file-list>
+    <welcome-file>/Manager/manager_login.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

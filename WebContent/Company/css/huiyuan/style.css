@@ -1,0 +1,128 @@
+/* CSS Document */
+.statu {
+	border-radius:5px; 
+	-moz-border-radius:5px; 
+	webkit-border-radius:5px; 
+	border: 1px solid; 
+	font-size:0.9em; 
+	padding:5px 0px 5px 30px;
+	background-color: #ededed; 
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	font-weight:bold; 
+	margin:10px auto;
+	width:30%;
+}
+.statu.infor {
+text-align:center;
+	color: #5593a5;
+	border-color:#5593a5; 
+	background-image: url('../images/icons/messages/info.png');
+}
+#pic{
+margin-top:30px;
+width:300px;
+height:450px;
+float:left;
+}
+table{
+padding-left:100px;
+font-size:16px;
+}
+#show_info{
+margin-top:50px;
+align:center;
+}
+
+
+/***************** .list_tableS ******************/
+
+.list_table {
+	border-collapse:collapse;
+	margin:0px auto; 
+	width:60%; 
+}
+
+.list_table tr.active td{
+	font-size:0.9em; 
+	background:#EDEDED;
+}
+.list_table th, .mini-.list_table th {
+	color:#DDD;
+	padding:8px; 
+	text-align:left; 
+	font-weight:bold;
+	color:#FFF;
+	border-right:solid 1px #e1e1e1;
+}
+
+.list_table td {
+	padding:10px; 
+	color:#111;
+}
+
+.list_table td.sub {
+	padding-left:15px;
+	text-align:left;
+}
+
+.list_table tr.odd td {
+	background:url("../../WebContent/images/structure/bg-td.png") repeat-x scroll 0 100% transparent;
+}
+
+.list_table td.active {
+	background:none repeat scroll 0 0 #F5F5F5;
+	border-left:1px solid #D4D4D4;
+	border-right:1px solid #D4D4D4;
+}
+
+.list_table td.active .holder {
+	border-left:1px solid #FAFAFA;
+	border-right:1px solid #FAFAFA;
+}
+
+.list_table .odd td.active {
+	background:url("../../images/structure/bg-td.png") repeat-x scroll 0 100% #F5F5F5;
+}
+
+.list_table div.arrow {
+	background:transparent url("../../images/arrows/arrows.png")no-repeat scroll 0px -16px; 
+	width:16px; 
+	height:16px; 
+	display:block; 
+	cursor:pointer;
+}
+
+.list_table div.up { 
+	background-position:0px 0px; 
+	cursor:pointer;
+}
+
+.list_table a{
+	background-repeat:no-repeat; 
+	background-position:left; 
+	padding-left:20px; 
+	text-decoration:none; 
+	color:#111; 
+	font-size:0.9em; 
+	font-weight:bold; 
+	line-height:1.4em;
+	display:block
+}
+
+.list_table a.view-record{
+background-image:url("../../images/icons/view.png");
+} 
+
+.list_table a.preview-record{
+	background-image:url(../../images/icons/preview.png);
+} 
+
+.list_table a.edit-record{
+	background-image:url(../../images/icons/edit.png);
+} 
+
+.list_table a.delete-record{
+	background-image:url(../../images/icons/delete.png);
+} 
+/*******************************************/

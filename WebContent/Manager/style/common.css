@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+.fl{float:left;}
+.fr{float:right;}
+.clearfix{overflow:auto;zoom:1;}
+a,p,h2,h3,h4,h5,i,span,table,tr,th,td{
+	font-family: "微软雅黑";
+}

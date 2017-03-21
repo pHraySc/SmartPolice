@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-2 10:57:10 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="cn.smartpolice.hibernate.DeviceInfo" table="DEVICEINFO">
+        <id name="deviceid" type="int">
+            <column name="DEVICEID" />
+            <generator class="assigned" />
+        </id>
+        <property name="serial" type="java.lang.String">
+            <column name="SERIAL" />
+        </property>
+        <property name="code" type="java.lang.String">
+            <column name="CODE" />
+        </property>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="state" type="java.lang.String">
+            <column name="STATE" />
+        </property>
+        <property name="date" type="java.util.Date">
+            <column name="DATE" />
+        </property>
+        <property name="longitude" type="java.lang.String">
+            <column name="LONGITUDE" />
+        </property>
+        <property name="latitude" type="java.lang.String">
+            <column name="LATITUDE" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" />
+        </property>
+        <property name="maxconlimit" type="int">
+            <column name="MAXCONLIMIT" />
+        </property>
+        <property name="mphone" type="java.lang.String">
+            <column name="MPHONE" />
+        </property>
+    </class>
+</hibernate-mapping>

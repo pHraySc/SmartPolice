@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-11-8 11:08:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="cn.smartpolice.netdao.ServerInf" table="server_inf">
+		<id name="serverId" type="int">
+			<column name="serverid" />
+			<generator class="assigned"></generator>
+		</id>
+		<property name="type" type="int">
+			<column name="type"/>
+		</property>
+		<property name="demo" type="java.lang.String">
+			<column name="demo"/>
+		</property>
+		<property name="memory" type="int">
+			<column name="memory"/>
+		</property>
+		<property name="CPU" type="java.lang.String">
+			<column name="CPU"/>
+		</property>
+		<property name="ip" type="int">
+			<column name="ip"/>
+		</property>
+		<property name="port" type="int">
+			<column name="port"/>
+		</property>
+		<property name="longitude" type="java.lang.String">
+			<column name="longitude"/>
+		</property>
+		<property name="latitude" type="java.lang.String">
+			<column name="latitude"/>
+		</property>
+		<property name="manager" type="int">
+			<column name="manager"/>
+		</property>		
+	</class>
+</hibernate-mapping>

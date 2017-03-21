@@ -1,0 +1,23 @@
+/************ LOGIN PAGE *************/
+
+#login-body{
+	background:#FEFEFE url('../images/login_bg.png') repeat-x;
+}
+
+#login-form #wrapper{
+	background-image: url('../images/inner_header.png');
+}
+
+#login-title h1{
+	width:100%;
+	margin-left:120px;
+	height:80px;
+	background-image:url('../images/logo.png');
+}
+
+#login-form{
+	border-color:#c9bfb3;
+}
+
+/************************************/
+

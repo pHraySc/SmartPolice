@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-11-8 11:08:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="cn.smartpolice.netdao.DevLog" table="device_log">
+		<id name="logid" type="int">
+			<column name="logid" />
+			<generator class="assigned"></generator>
+		</id>
+		<property name="deviceid" type="int">
+			<column name="deviceid"/>
+		</property>
+		<property name="date" type="java.util.Date">
+			<column name="date"/>
+		</property>
+		<property name="ip" type="java.lang.String">
+			<column name="ipaddr"/>
+		</property>
+		<property name="port" type="int">
+			<column name="port"/>
+		</property>
+		<property name="operate" type="int">
+			<column name="operate"/>
+		</property>
+	</class>
+</hibernate-mapping>

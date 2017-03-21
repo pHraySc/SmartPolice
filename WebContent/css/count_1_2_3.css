@@ -1,0 +1,418 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: "微软雅黑";
+}
+body {
+	background-color: #F4FFFF;
+}
+.chart-box {
+	position: absolute;
+	height: 450px;
+	width: 902px;
+	border: solid 1px darkgray;
+	top: 100px;
+	left: 80px;
+}
+#chart-box1 {
+	z-index:1;
+}
+#chart-box2 {
+	z-index:-1;
+}
+.change {
+	background-color: #EE9A49;
+	color:white;
+	position:absolute;
+	left:250px;
+	top:11px;
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 0.8;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px
+	transition:background-color 1.5s;
+	-webkit-transition:background-color 1.5s;
+	transition:font-size 0.5s;
+	-webkit-transition:font-size 0.5s;
+}
+.change:hover{
+	background-color: #EE7600;
+}
+.type{
+	position: absolute;
+	z-index: 100;
+	width: 250px;
+	left: 740px;
+	top: 45px;
+}
+.type-1{
+	position: relative;
+	top: 12px;
+	width: 20px;
+	height: 20px;
+	background-color: rgba(151,187,205,0.75);
+}
+.type-2{
+	position: relative;
+	top: 12px;
+	width: 20px;
+	height: 20px;
+	background-color: #E2E2E5;
+}
+.T1{
+	position: absolute;
+	width: 250px;
+}
+.T2{
+	position: absolute;
+	top: 30px;
+	width: 250px;
+}
+.chart-box-1 {
+	position: absolute;
+	left: 650px;
+	top: 10px;
+}
+.active1 {
+	background-color: dodgerblue;
+	color: white;
+}
+.btn1 {
+	position: relative;
+	height: 30px;
+}
+.btn2 {
+	position: relative;
+	height: 30px;
+	margin-left: 20px;
+}
+.btn3 {
+	position: relative;
+	height: 30px;
+	margin-left: 20px;
+}
+.btn:hover {
+	background-color: #1E90FF;
+	color: white;
+}
+.chart-box span {
+	position: absolute;
+	top: 12px;
+	margin-left: 40px;
+}
+.glyphicon-signal,
+.glyphicon-random {
+	margin-right: 15px;
+}
+.chart-top {
+	position: absolute;
+	width: 900px;
+	height: 50px;
+	background-color: #99CCCC;
+}
+.chart-top-text{
+	font-size: 18px;
+	color: white;
+}
+.chart-day,
+.chart-day2,
+.chart-day3 {
+	position: absolute;
+	left: 50px;
+	top: 95px;
+	width: 800px;
+	height: 250px;
+}
+.C1,
+.C2,
+.C3 {
+	background-color: #F4FFFF;
+}
+.chart-day {
+	z-index: 1;
+}
+.chart-day2 {
+	z-index: -1;
+}
+.chart-day3 {
+	z-index: -1;
+}
+.s1 {
+	color: mediumseagreen;
+}
+.s2 {
+	color: dodgerblue;
+}
+.s3 {
+	color: orangered;
+}
+.chart-img1{
+	position: absolute;
+	left: 80px;
+	top: 580px;
+	height: 100px;
+	width: 200px;
+	background-color: #00C0EF;
+}
+.imgA span{
+	position: absolute;
+	font-size: 38px;
+	color: white;
+	left: 25px;
+	top: 6px;
+	transition:font-size 0.5s;
+	-webkit-transition:font-size 0.5s;
+}
+.imgA i{
+	position: absolute;
+	font-size: 50px;
+	left: 120px;
+	top: 12px;
+	color: #00A3CB;
+	transition:font-size 0.5s;
+	-webkit-transition:font-size 0.5s;
+}
+.imgA i:hover{
+	font-size: 60px;
+}
+.imgA-b{
+	position: absolute;
+	height: 35px;
+	width: 100%;
+	top: 70px;
+	background-color: #00A4CC;
+}
+.imgA-b span{
+	color: white;
+	font-size: 18px;
+	position: absolute;
+	left: 55px;
+	top: 4px;
+}
+.imgA span:hover{
+	font-size: 40px;
+}
+.chart-img2{
+	position: absolute;
+	left: 430px;
+	top: 580px;
+	height: 100px;
+	width: 200px;
+	background-color: #F39C12;
+}
+.imgB span{
+	position: absolute;
+	font-size: 38px;
+	color: white;
+	left: 25px;
+	top: 6px;
+	transition:font-size 0.5s;
+	-webkit-transition:font-size 0.5s;
+}
+.imgB span:hover{
+	font-size: 40px;
+}
+.imgB i{
+	position: absolute;
+	font-size: 45px;
+	left: 125px;
+	top: 12px;
+	color: #CE840F;
+	transition:font-size 0.5s;
+	-webkit-transition:font-size 0.5s;
+}
+.imgB i:hover{
+	font-size: 55px;
+}
+.imgB-b{
+	position: absolute;
+	height: 35px;
+	width: 100%;
+	top: 70px;
+	background-color: #CF850F;
+}
+.imgB-b span{
+	color: white;
+	font-size: 18px;
+	position: absolute;
+	left: 55px;
+	top: 4px;
+}
+.chart-img3{
+	position: absolute;
+	left: 780px;
+	top: 580px;
+	height: 100px;
+	width: 200px;
+	background-color: #00A65A;
+}
+.imgC span{
+	position: absolute;
+	font-size: 38px;
+	color: white;
+	left: 25px;
+	top: 6px;
+	transition:font-size 0.5s;
+	-webkit-transition:font-size 0.5s;
+}
+.imgC span:hover{
+	font-size: 40px;
+}
+.imgC i{
+	position: absolute;
+	font-size: 45px;
+	left: 125px;
+	top: 12px;
+	color: #008D4C;
+	transition:font-size 0.5s;
+	-webkit-transition:font-size 0.5s;
+}
+.imgC i:hover{
+	font-size: 55px;
+}
+.imgC-b{
+	position: absolute;
+	height: 35px;
+	width: 100%;
+	top: 70px;
+	background-color: #008D4D;
+}
+.imgC-b span{
+	color: white;
+	font-size: 18px;
+	position: absolute;
+	left: 55px;
+	top: 4px;
+}
+.M_dev_f-o{
+	position: absolute;
+	width:450px;
+	height:350px;
+	left:410px;
+	top:70px;
+}
+.o-1{
+	position: absolute;
+	left:70px;
+	width:300px;
+	height:100px;
+	background-color: #00C0EF;
+	color:white;
+}
+.o-1-left{
+	position: absolute;
+	width:100px;
+	height:100px;
+	background-color: #009ABF;
+}
+.o-1-type{
+	position: absolute;
+	left:75px;
+	margin-top:-5px;
+}
+.o-1-hr{
+	position: absolute;
+	left:100px;
+	width:220px;
+	height:3px;
+	background-color: white;
+	top:65px;
+}
+.o-1-count{
+	position: absolute;
+	left:90px;
+	font-size:20px;
+	margin-top:18px;
+	font-weight:bold;
+}
+.o-2{
+	position: absolute;
+	top:130px;
+	left:70px;
+	width:300px;
+	height:100px;
+	background-color: #00A65A;
+	color:white;
+}
+.o-2-left{
+	position: absolute;
+	width:100px;
+	height:100px;
+	background-color: #008548;
+}
+.o-2-type{
+	position: absolute;
+	left:75px;
+	margin-top:-5px;
+}
+.o-2-hr{
+	position: absolute;
+	left:100px;
+	width:220px;
+	height:3px;
+	background-color: white;
+	top:65px;
+}
+.o-2-count{
+	position: absolute;
+	left:90px;
+	font-size:20px;
+	margin-top:18px;
+	font-weight:bold;
+}
+.o-3{
+	position: absolute;
+	top:260px;
+	left:70px;
+	width:300px;
+	height:100px;
+	background-color: #F39C12;
+	color:white;
+}
+.o-3-left{
+	position: absolute;
+	width:100px;
+	height:100px;
+	background-color: #C37D0E;
+}
+.o-3-type{
+	position: absolute;
+	left:75px;
+	margin-top:-5px;
+}
+.o-3-hr{
+	position: absolute;
+	left:100px;
+	width:220px;
+	height:3px;
+	background-color: white;
+	top:65px;
+}
+.o-3-count{
+	position: absolute;
+	left:90px;
+	font-size:20px;
+	margin-top:18px;
+	font-weight:bold;
+}
+.o-1-left i,.o-2-left i,.o-3-left i{
+	position: absolute;
+	font-size:55px;	
+	left:22px;
+	top:22px;
+}

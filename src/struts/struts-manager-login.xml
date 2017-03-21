@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="login" extends="struts-default">
+		<action name="manager-login" method="login" class="managerLoginAction">
+			<!-- <result name="input">/firm_em.jsp</result> -->
+			<result name="success">/Manager/index.jsp</result>
+			<result name="error">/Manager/manager_login.jsp</result>
+		</action>	
+		<action name="manager-logout" method="logout" class="managerLoginAction">
+			<result name="success">/Manager/manager_login.jsp</result>
+			<!-- <result name="error">/Manager/login.jsp</result> -->
+		</action>
+	</package> 
+</struts>

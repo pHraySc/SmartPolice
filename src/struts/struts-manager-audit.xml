@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="audit" extends="struts-default">
+		<action name="managerAuditCompany" method="AuditCompany" class="managerAuditAction">
+			
+			<result name="success">/Manager/manager_audit_company.jsp</result>
+			
+		</action>	
+		<action name="managerAuditDevice" method="AuditDevice" class="managerAuditAction">
+			<result name="success">/Manager/manager_audit_device.jsp</result>
+			
+		</action>
+		<action name="managerAuditMoveDevice" method="AuditMoveDevice" class="managerAuditAction">
+			<result name="success">/Manager/manager_audit_movedevice.jsp</result>
+			
+		</action>
+		<action name="ManagerPassCompany" method="PassCompany" class="managerAuditAction">
+			<result name="success" type="chain">managerAuditCompany</result>
+			
+		</action>
+		<action name="ManagerRefusedCompany" method="RefusedCompany" class="managerAuditAction">
+			<result name="success" type="chain">managerAuditCompany</result>
+			
+		</action>
+		<action name="ManagerPassdevice" method="PassDevice" class="managerAuditAction">
+			<result name="success" type="chain">managerAuditDevice</result>
+			
+		</action>
+		<action name="ManagerRefuseddevice" method="RefusedDevice" class="managerAuditAction">
+			<result name="success" type="chain">managerAuditDevice</result>
+			
+		</action>
+		<action name="ManagerPassMovedevice" method="PassMoveDevice" class="managerAuditAction">
+			<result name="success" type="chain">managerAuditMoveDevice</result>
+			
+		</action>
+		<action name="ManagerRefusedMovedevice" method="RefusedMoveDevice" class="managerAuditAction">
+			<result name="success" type="chain">managerAuditMoveDevice</result>
+			
+		</action>
+		<action name="batchHandleaCompanyuser" method="batchHandleaCompanyuser" class="managerAuditAction">
+			<result name="success" type="chain">managerAuditCompany</result>
+
+		</action>
+		<action name="batchHandlePredevice" method="batchHandlePredevice" class="managerAuditAction">
+			<result name="success" type="chain">managerAuditDevice</result>
+			
+		</action>
+		<action name="batchHandleMovedevice" method="batchHandleMovedevice" class="managerAuditAction">
+			<result name="success" type="chain">managerAuditMoveDevice</result>
+			
+		</action>
+		<action name="PredeviceDetailOfAuditing" method="PredeviceDetailOfAuditing" class="managerAuditAction">
+			<result name="success">/Manager/manager_audit_predevice.all.jsp</result>
+			
+		</action>
+		<action name="MovdeviceDetailOfChecking" method="MovdeviceDetailOfChecking" class="managerAuditAction">
+			<result name="success">/Manager/manager_audit_predevice1.all.jsp</result>
+			
+		</action>
+			<action name="ManagerAuditConpanyInfo" method="ManagerAuditConpanyInfo" class="managerAuditAction">
+			<result name="success">/Manager/manager_audit_CompanyInfo.jsp</result>
+			
+		</action>
+	</package> 
+</struts>

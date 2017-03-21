@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 系统配置信息 -->
+<CONFIG>
+	<VALUE>
+		<maxLoginDevices>20</maxLoginDevices>
+		<maxLoginUsers>40</maxLoginUsers>
+		<mysqlUserName>root</mysqlUserName>
+		<mysqlPassword>123</mysqlPassword>
+		<sessionPort>4567</sessionPort>
+		<ip>192.123.25.36</ip>
+		<port>5678</port>
+		<sessionPassword>235</sessionPassword>
+		<resentNum>55</resentNum>
+		<overtime>3000</overtime>
+		<state>1</state> //0不需要验证，1需要验证
+	</VALUE>
+</CONFIG>

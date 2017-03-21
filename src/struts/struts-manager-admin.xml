@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="admin" extends="struts-default">
+		<action name="managerAdminCompany" method="allCompany" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_company.jsp</result>
+			
+		</action>	
+		<action name="managerAdminDevice" method="allDevice" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_device.jsp</result>
+			
+		</action>
+		<action name="managerAdminMoveDevice" method="allMoveDevice" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_movedevice.jsp</result>
+			
+		</action>
+		<action name="managerAdminUserinfo" method="allUserinfo" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_userinfo.jsp</result>
+			
+		</action>
+		<action name="managerAdminWebservice" method="allWebservice" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_webservice.jsp</result>
+			
+		</action>
+		<action name="managerAdminMsg_alarm" method="allMsg_alarms" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_msg_alarms.jsp</result>
+			
+		</action>
+		<action name="managerAdminMsg_chat" method="allMsg_chat" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_msg_chat.jsp</result>
+			
+		</action>
+		<action name="managerAdminMsg_notice" method="allMsg_notice" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_msg_notice.jsp</result>
+			
+		</action>
+		<action name="managerAdmincomment" method="allComment" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_comment.jsp</result>
+			
+		</action>
+		<action name="CompanyDetail1" method="CompanyDetail1" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_company.all.jsp</result>
+			
+		</action>
+		<action name="PredeviceDetailOfManager" method="PredeviceDetailOfManager" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_predevice.all.jsp</result>
+			
+		</action>
+		<action name="MovedeviceDetailOfManager" method="MovedeviceDetailOfManager" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_predevice1.all.jsp</result>
+			
+		</action>
+		<action name="UserDetail1" method="UserDetail1" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_userinfo.all.jsp</result>
+			
+		</action>
+		<action name="ServiceOfChecked" method="ServiceOfChecked" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_webservice.all.jsp</result>
+			
+		</action>
+		<action name="All_msg_alarms" method="All_msg_alarms" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_msg_alarms.all.jsp</result>
+			
+		</action>
+		<action name="All_msg_chat" method="All_msg_chat" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_msg_chat.all.jsp</result>
+			
+		</action>	
+		<action name="All_msg_notice" method="All_msg_notice" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_msg_noctice.all.jsp</result>
+			
+		</action>
+		<action name="Allcomment" method="Allcomment" class="managerAdminAction">
+			<result name="success">/Manager/manager_admin_comment.all.jsp</result>
+			
+		</action>				
+	</package> 
+</struts>

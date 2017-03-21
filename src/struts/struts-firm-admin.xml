@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="firm-admin" extends="struts-default">
+		<action name="firmAdminSelf" method="firmAdminSelf" class="firmAdminAction">
+			<result name="success">/Company/firm_admin_self.jsp</result>
+			
+		</action>
+		
+		<action name="firmAdminChangeInfo" method="firmAdminChangeInfo" class="firmAdminAction">
+			<result name="success" type="chain">firmAdminSelf</result>
+
+		</action>
+		
+		<action name="firmAdimnPassword" method="firmAdimnPassword" class="firmAdminAction">
+			<result name="success" >/Company/firm_login.jsp</result>
+
+		</action>
+			<action name="firmAdminDevive" method="firmAdminDevive" class="firmAdminAction">
+			<result name="success" >/Company/firm_Admin_Device.jsp</result>
+
+		</action>
+			<action name="firmAdmindeviceInfo" method="firmAdmindeviceInfo" class="firmAdminAction">
+			<result name="success" >/Company/firm_Admin_DeviceInfo.jsp</result>
+
+		</action>
+
+			<action name="firmAdminSoft" method="firmAdminSoft" class="firmAdminAction">
+			<result name="success" >/Company/firm_Admin_Soft.jsp</result>
+
+		</action>	
+			<action name="firmAdminSoftInfo" method="firmAdminSoftInfo" class="firmAdminAction">
+			<result name="success" >/Company/firm_admin_SoftInfo.jsp</result>
+
+		</action>
+			<action name="firmAdminmsg" method="firmAdminmsg" class="firmAdminAction">
+			<result name="success" >/Company/firm_admin_msg.jsp</result>
+
+		</action>
+			<action name="firmAdminMsgInfo" method="firmAdminMsgInfo" class="firmAdminAction">
+			<result name="success" >/Company/firm_admin_msgInfo.jsp</result>
+
+		</action>				
+	</package> 
+</struts>

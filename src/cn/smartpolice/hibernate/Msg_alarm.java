@@ -1,0 +1,69 @@
+package cn.smartpolice.hibernate;
+
+import java.sql.Date;
+
+public class Msg_alarm {
+	private int alarmid;
+	private Date time;
+	private int deviceid;
+	private int type;
+	private String url;
+	private int size;
+	private String md5;
+	private int level;
+	private boolean state;
+	public int getAlarmid() {
+		return alarmid;
+	}
+	public void setAlarmid(int alarmid) {
+		this.alarmid = alarmid;
+	}
+	public Date getTime() {
+		return time;
+	}
+	public void setTime(Date time) {
+		this.time = time;
+	}
+	public int getDeviceid() {
+		return deviceid;
+	}
+	public void setDeviceid(int deviceid) {
+		this.deviceid = deviceid;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
+	public String getMd5() {
+		return md5;
+	}
+	public void setMd5(String md5) {
+		this.md5 = md5;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	public boolean getState() {
+		return state;
+	}
+	public void setState(boolean state) {
+		this.state = state;
+	}
+}

@@ -1,0 +1,167 @@
+body{
+	background:#eee;
+}
+
+.top{
+	height:120px;
+}
+.first, .second, .third{
+	float:left;
+	height:100px;
+	width:205px;
+	border:1px solid white;
+	margin:10px 75px;
+	background:white;
+}
+.top img{
+	height:80px;
+	width:80px;
+	margin:10px 1px;
+}
+.first-right,.first-left{
+	float:left;
+}
+.second-right,.second-left{
+	float:left;
+}
+.third-right,.third-left{
+	float:left;
+}
+.first-right-top,.second-right-top,.third-right-top{
+	height:40px;
+	padding:10px 20px;
+	font-weight:800;
+	font-size:20px;
+}
+.first-right-bottom,.second-right-bottom,.third-right-bottom{
+	
+}
+
+.mid{
+	height:400px;
+
+}
+@charset "utf-8";
+/* CSS Document Download by http://www.codefans.net*/
+*{
+	margin:0;
+	padding:0;
+}
+ul{
+	list-style:none;
+}
+
+.clear{
+	clear:both;
+}
+
+
+.month-container{
+	float:left;
+	background:#fffbdf;
+	width:304px;
+	height:auto;
+	margin:40px 30px;
+	box-shadow:2px 2px 8px 1px rgba(0,0,0,0.6);
+}
+
+.month-head{
+	background:#fffbdf;
+	width:304px;
+	height:50px;
+    font:10px "microsoft yahei";
+	text-shadow:2px 2px 3px #FFF;
+	text-align:center;
+}
+
+.month-head span {
+    color: #ffb186;
+    border-color: #fffbdf;
+	line-height:50px;
+}
+
+
+.month-cell {
+    float: left;
+	width:40px;
+	height:40px;
+	background:#F5F5F5;
+	border:1px solid #FEFEFE;
+}
+
+.month-cell:active{
+	box-shadow:inset 2px 2px 5px rgba(0,0,0,0.6);
+}
+
+.month-cell span {
+    display: block;
+    color: #cccccc;
+    font:10px "microsoft yahei";
+    text-align: center;
+	line-height:40px;
+    cursor:pointer;
+}
+
+.month-cell.active span {
+    border-color: #cccccc;
+}
+
+.month-cell.pink {
+    background: #fffbdf;
+}
+
+.month-cell.pink span {
+    color: #ffb186;
+    border-color: #fffbdf;
+}
+
+.month-cell.pink.active span {
+    border-color: #ffe295;
+}
+
+.month-cell.orange {
+    background: #fff5b4;
+}
+
+.month-cell.orange span {
+    color: #ffaf6e;
+    border-color: #fff5b4;
+}
+
+.month-cell.orange.active span {
+    border-color: #ffcf71;
+}
+
+.month-cell.red {
+    background: #ff6840;
+}
+
+.month-cell.red span {
+    color: #ffffff;
+    border-color: #ff6840;
+}
+
+
+.month-cell.blue {
+    background: #5bb5ec;
+}
+
+.month-cell.blue span {
+    color: #ffffff;
+    border-color: #5bb5ec;
+}
+
+
+.flipContainer{
+	width:300px;
+	height:100px;
+	background:#FFF;
+	padding:10px;
+}
+
+.flip{
+	background:url(../images/filmstrip.png);
+	float:left;
+	width:53px;
+	height:103px;
+}

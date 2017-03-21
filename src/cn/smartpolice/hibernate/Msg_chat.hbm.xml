@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-2 10:57:10 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="cn.smartpolice.hibernate.Msg_chat" table="MSG_CHAT">
+        <id name="chatid" type="int">
+            <column name="CHATID" />
+            <generator class="assigned" />
+        </id>
+        <property name="sendid" type="int">
+            <column name="SENDID" />
+        </property>
+        <property name="recvid" type="int">
+            <column name="RECVID" />
+        </property>
+        <property name="sendtime" type="java.sql.Date">
+            <column name="SENDTIME" />
+        </property>
+        <property name="content" type="java.lang.String">
+            <column name="CONTENT" />
+        </property>
+    </class>
+</hibernate-mapping>

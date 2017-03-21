@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<include file="struts/struts-manager-login.xml"></include>
+	<include file="struts/struts-manager-audit.xml"></include>
+	<include file="struts/struts-manager-admin.xml"></include>
+	<include file="struts/struts-manager-stat.xml"></include>
+	<include file="struts/struts-firm-login.xml"></include>
+	<include file="struts/struts-firm-admin.xml"></include>
+</struts>

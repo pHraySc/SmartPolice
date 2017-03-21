@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="firm-login" extends="struts-default">
+		<action name="firmLogin" method="login" class="firmLoginAction">
+			<result name="success">/Company/index.jsp</result>
+			
+		</action>
+		
+		<action name="firmlogout" method="logout" class="firmLoginAction">
+			<result name="success">/Company/firm_login.jsp</result>
+			
+		</action>
+			<action name="firmregister" method="firmregister" class="firmLoginAction">
+			<result name="success">/Company/firm_login.jsp</result>
+			<result name="error">/Company/firm_register.jsp</result>
+		</action>
+			
+	</package> 
+</struts>

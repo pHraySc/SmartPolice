@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-11-8 11:08:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="cn.smartpolice.netdao.DeviceInf" table="device_inf">
+		<id name="deviceid" type="int">
+			<column name="deviceid" />
+			<generator class="assigned"></generator>
+		</id>
+		<property name="serial" type="java.lang.String">
+			<column name="serial"/>
+		</property>
+		<property name="code" type="java.lang.String">
+			<column name="code"/>
+		</property>
+		<property name="username" type="java.lang.String">
+			<column name="username"/>
+		</property>
+		<property name="password" type="java.lang.String">
+			<column name="password"/>
+		</property>
+		<property name="state" type="java.lang.String">
+			<column name="state"/>
+		</property>
+		<property name="date" type="java.util.Date">
+			<column name="date"/>
+		</property>
+		<property name="longitude" type="java.lang.String">
+			<column name="longitude"/>
+		</property>
+		<property name="latitude" type="java.lang.String">
+			<column name="latitude"/>
+		</property>
+		<property name="type" type="java.lang.String">
+			<column name="type"/>
+		</property>
+		<property name="maxconlimit" type="int">
+			<column name="maxconlimit"/>
+		</property>
+		<property name="mphone" type="java.lang.String">
+			<column name="mphone"/>
+		</property>
+		
+	</class>
+</hibernate-mapping>
