@@ -23,7 +23,6 @@ public class StatDaoImpl implements StatDao {
 	private HibernateTemplate hibernateTemplate;
 	@Override
 	public List statCompanyData() {
-		
 		Session session=this.hibernateTemplate.getSessionFactory().getCurrentSession();
 		String sql1="SELECT COUNT(*) FROM company_user";
 		String sql2="SELECT COUNT(*) FROM (SELECT * FROM company_user WHERE state='1') AS yishenhe";

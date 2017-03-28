@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-11-2 10:57:10 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2017-3-28 17:01:51 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="cn.smartpolice.hibernate.Msg_notice" table="MSG_NOTICE">
-        <id name="sendid" type="int">
-            <column name="SENDID" />
+        <id name="recvid" type="int">
+            <column name="RECVID" />
             <generator class="assigned" />
         </id>
         <property name="noticeid" type="int">
@@ -19,6 +19,9 @@
         </property>
         <property name="content" type="java.lang.String">
             <column name="CONTENT" />
+        </property>
+        <property name="sendid" type="int">
+            <column name="SENDID" />
         </property>
     </class>
 </hibernate-mapping>

@@ -32,6 +32,9 @@
 		<mapping resource="cn/smartpolice/hibernate/Msg_chat.hbm.xml" />
 		<mapping resource="cn/smartpolice/hibernate/Msg_notice.hbm.xml" />
 		<mapping resource="cn/smartpolice/hibernate/SoftInfo.hbm.xml" />
+		<mapping resource="cn/smartpolice/hibernate/AddServers.hbm.xml" />
+		<mapping resource="cn/smartpolice/hibernate/PlatMsgAnnouce.hbm.xml" />
+		<mapping resource="cn/smartpolice/hibernate/SystemRunInfo.hbm.xml" />
 			<!-- 网络通信hibernate映射文件 -->
 		<mapping resource="cn/smartpolice/netdao/UserInf.hbm.xml" />
 		<mapping resource="cn/smartpolice/netdao/ServerInf.hbm.xml" />
