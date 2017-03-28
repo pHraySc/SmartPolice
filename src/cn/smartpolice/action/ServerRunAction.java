@@ -104,7 +104,7 @@ public class ServerRunAction extends ActionSupport {
 	
 	public String SystemRunInfo(){
 		List info = systemRunInfoService.getSystemRunInfoFromDB();
-		request.setAttribute("systemRunInfo", info);
+		session.setAttribute("systemRunInfo", info);
 		return "systemruninfo";
 	}
 }
