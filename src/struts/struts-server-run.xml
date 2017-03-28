@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="server-run" extends="struts-default">
+		<action name="AddServers" method="AddServers" class="serverRunAction">
+			<result name="addservers"></result>
+			
+		</action>
+		
+		<action name="PlatMsgAnounce" method="PlatMsgAnounce" class="serverRunAction">
+			<result name="platmsganounce"></result>
+
+		</action>
+		
+		<action name="SystemRunInfo" method="SystemRunInfo" class="serverRunAction">
+			<result name="systemruninfo" ></result>
+
+		</action>			
+	</package> 
+</struts>

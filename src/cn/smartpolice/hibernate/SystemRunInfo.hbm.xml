@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-28 17:01:51 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.smartpolice.hibernate.SystemRunInfo" table="SYSTEMRUNINFO">
+        <id name="CurrentUserNum" type="java.lang.String">
+            <column name="CURRENTUSERNUM" />
+            <generator class="assigned" />
+        </id>
+        <property name="InterfaceUserNum" type="java.lang.String">
+            <column name="INTERFACEUSERNUM" />
+        </property>
+        <property name="MaxLoginUserNum" type="java.lang.String">
+            <column name="MAXLOGINUSERNUM" />
+        </property>
+        <property name="DeviceLoginNum" type="java.lang.String">
+            <column name="DEVICELOGINNUM" />
+        </property>
+        <property name="FileOpenedNum" type="java.lang.String">
+            <column name="FILEOPENEDNUM" />
+        </property>
+        <property name="MaxLoginDeviceNum" type="java.lang.String">
+            <column name="MAXLOGINDEVICENUM" />
+        </property>
+        <property name="AppLoginNum" type="java.lang.String">
+            <column name="APPLOGINNUM" />
+        </property>
+        <property name="AchiveMsgNum" type="java.lang.String">
+            <column name="ACHIVEMSGNUM" />
+        </property>
+        <property name="SendMsgNum" type="java.lang.String">
+            <column name="SENDMSGNUM" />
+        </property>
+    </class>
+</hibernate-mapping>
