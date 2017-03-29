@@ -10,7 +10,7 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="css/login.css"/>
 		<script src="js/check.js"></script>
-		<title></title>
+		<title>管理员_登录页面</title>
 		<script>
 			$(document).ready(function(){
  				$(".btn-reg").click(function(){
