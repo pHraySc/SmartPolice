@@ -11,44 +11,87 @@ import cn.smartpolice.hibernate.Msg_chat;
 import cn.smartpolice.hibernate.Msg_notice;
 
 /**
- * ÏûÏ¢Êı¾İ¿â²Ù×÷
- * @author Áõ³¬
+ * æ¶ˆæ¯æ•°æ®åº“æ“ä½œ
+ * @author åˆ˜è¶…
  *
  */
 public class MsgDao {
 
 	private Session session = HibernateUtil.currentSession();
 	private Transaction ts = session.beginTransaction();
-	//ÔÚmsg_alarmÖĞ²åÈëÒ»Ìõ¼ÇÂ¼
+	//åœ¨msg_alarmä¸­æ’å…¥ä¸€æ¡è®°å½•
 	public void insertMsgAlarm(Msg_alarm alarm){
 		this.session.save(alarm);
 		ts.commit();
 	}
-	//ÔÚmsg_chatÖĞ²åÈëÒ»Ìõ¼ÇÂ¼
+	//åœ¨msg_chatä¸­æ’å…¥ä¸€æ¡è®°å½•
 	public void insertMsgChat(Msg_chat chat){
 		this.session.save(chat);
 		ts.commit();
 	}
-	//ÔÚmsg_noticeÖĞ²åÈëÒ»Ìõ¼ÇÂ¼
+	//åœ¨msg_noticeä¸­æ’å…¥ä¸€æ¡è®°å½•
 	public void insertMsgNotice(Msg_notice notice){
 		this.session.save(notice);
 		ts.commit();
 	}
-	// ÔÚÏûÏ¢¼ÇÂ¼±íÖĞ²åÈë
+	// åœ¨æ¶ˆæ¯è®°å½•è¡¨ä¸­æ’å…¥
 	public void insertMsgRecv(MsgRecv recv){
 		this.session.save(recv);
 		ts.commit();
 	}
-	//Í¨¹ı½ÓÊÕÏûÏ¢Éè±¸idÕÒµ½ÏûÏ¢¼ÇÂ¼
+	//é€šè¿‡æ¥æ”¶æ¶ˆæ¯è®¾å¤‡idæ‰¾åˆ°æ¶ˆæ¯è®°å½•
+	public List<MsgRecv> findMsgRecvByRecvUserIdlist(int recvuserid){
+		Query query = session.createQuery("from MsgRecv where recvuserid = ?");
+		query.setInteger(0, recvuserid);
+		List<MsgRecv> list = query.list();
+		//ts.commit();
+		if(list != null /*&& list.size()==1*/){
+			return list;
+		}
+		return null;		
+	}	
 	public MsgRecv findMsgRecvByRecvUserId(int recvuserid){
 		Query query = session.createQuery("from MsgRecv where recvuserid = ?");
 		query.setInteger(0, recvuserid);
 		List<MsgRecv> list = query.list();
-		ts.commit();
+		//ts.commit();
 		if(list != null && list.size()==1){
 			return list.get(0);
 		}
-		return null;
-		
+		return null;		
+	}	
+	
+
+public Msg_chat findMsgChatByRecvUserId(int recvid) {
+	Query query = session.createQuery("from Msg_chat where recvid = ?");
+	query.setInteger(0, recvid);
+	List<Msg_chat> list = query.list();
+	///ts.commit();
+	if(list != null /*&& list.size()==1*/){
+		return list.get(0);
 	}
+	return null;	
+	
+}
+public Msg_alarm findMsgalarmByRecvUserId(int recvid) {
+	Query query = session.createQuery("from Msg_alarm where alarmid = ?");
+	query.setInteger(0, recvid);
+	List<Msg_alarm> list = query.list();
+	//ts.commit();
+	if(list != null /*&& list.size()==1*/){
+		return list.get(0);
+	}
+	return null;		
+}	
+public Msg_notice findMsgnoticeByRecvUserId(int recvid) {
+	Query query = session.createQuery("from Msg_notice where alarmid = ?");
+	query.setInteger(0, recvid);
+	List<Msg_notice> list = query.list();
+	//ts.commit();
+	if(list != null && list.size()==1){
+		return list.get(0);
+	}
+	return null;		
+}	
+	
 }

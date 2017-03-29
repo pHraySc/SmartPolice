@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.smartpolice.hibernate.PlatMsgAnnounce;
 
-@Repository("platMsgAnounceDao")
+@Repository("platMsgAnnounceDao")
 @Transactional(readOnly=false)
-public class PlatMsgAnounceDaoImpl implements PlatMsgAnounceDao{
+public class PlatMsgAnnounceDaoImpl implements PlatMsgAnnounceDao{
 	
 	@Resource(name="hibernateTemplate")
 	private HibernateTemplate hibernateTemplate;

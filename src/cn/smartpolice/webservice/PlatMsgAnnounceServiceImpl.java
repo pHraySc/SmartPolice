@@ -5,20 +5,20 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.smartpolice.dao.PlatMsgAnounceDao;
+import cn.smartpolice.dao.PlatMsgAnnounceDao;
 import cn.smartpolice.hibernate.PlatMsgAnnounce;
 
-@Service("platMsgAnounceService")
+@Service("platMsgAnnounceService")
 @Transactional(readOnly=false)
-public class PlatMsgAnounceServiceImpl implements PlatMsgAnounceService {
+public class PlatMsgAnnounceServiceImpl implements PlatMsgAnnounceService {
 
-	@Resource(name = "platMsgAnounceDao")
-	private PlatMsgAnounceDao anounceDao;
+	@Resource(name = "platMsgAnnounceDao")
+	private PlatMsgAnnounceDao announceDao;
 
 	@Override
 	public void AddPlatMsgToDB(PlatMsgAnnounce announce) {
 		if(announce != null){
-			anounceDao.AddPlatMsgToDB(announce);
+			announceDao.AddPlatMsgToDB(announce);
 		}
 	}
 }

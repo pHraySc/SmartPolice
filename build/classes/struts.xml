@@ -10,4 +10,5 @@
 	<include file="struts/struts-manager-stat.xml"></include>
 	<include file="struts/struts-firm-login.xml"></include>
 	<include file="struts/struts-firm-admin.xml"></include>
+	<include file="struts/struts-server-run.xml"></include>
 </struts>

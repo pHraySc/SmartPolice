@@ -14,7 +14,7 @@ import cn.smartpolice.hibernate.AddServers;
 import cn.smartpolice.hibernate.PlatMsgAnnounce;
 import cn.smartpolice.hibernate.SystemRunInfo;
 import cn.smartpolice.webservice.AddServersService;
-import cn.smartpolice.webservice.PlatMsgAnounceService;
+import cn.smartpolice.webservice.PlatMsgAnnounceService;
 import cn.smartpolice.webservice.SystemRunInfoService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,14 +28,14 @@ public class ServerRunAction extends ActionSupport {
 	private AddServers addServers;
 	
 	private PlatMsgAnnounce platMsgAnnounce;
-	
+	  
 	private SystemRunInfo systemRunInfo;
 	
 	@Resource(name = "addServersService")
 	private AddServersService addServersService;
 	
-	@Resource(name = "platMsgAnounceService")
-	private PlatMsgAnounceService platMsgAnounceService;
+	@Resource(name = "platMsgAnnounceService")
+	private PlatMsgAnnounceService platMsgAnounceService;
 	
 	@Resource(name  = "systemRunInfoService")
 	private SystemRunInfoService systemRunInfoService;
@@ -76,11 +76,11 @@ public class ServerRunAction extends ActionSupport {
 		this.addServersService = addServersService;
 	}
 
-	public PlatMsgAnounceService getPlatMsgAnounceService() {
+	public PlatMsgAnnounceService getPlatMsgAnounceService() {
 		return platMsgAnounceService;
 	}
 
-	public void setPlatMsgAnounceService(PlatMsgAnounceService platMsgAnounceService) {
+	public void setPlatMsgAnounceService(PlatMsgAnnounceService platMsgAnounceService) {
 		this.platMsgAnounceService = platMsgAnounceService;
 	}
 

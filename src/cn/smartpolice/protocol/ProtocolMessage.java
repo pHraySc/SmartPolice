@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.apache.mina.core.buffer.IoBuffer;
 
+import cn.smartpolice.hibernate.Msg_alarm;
+import cn.smartpolice.hibernate.Msg_chat;
 import cn.smartpolice.netdao.MsgDao;
 import cn.smartpolice.netdao.MsgRecv;
 import cn.smartpolice.tools.ByteArrayProc;
@@ -18,24 +20,24 @@ import cn.smartpolice.workbean.SysInfo;
 import net.sf.json.JSONArray;
 
 /**
- * ÏûÏ¢´«µİ cmd=5
+ * æ¶ˆæ¯ä¼ é€’ cmd=5
  * 
- * @author Áõ³¬ ÏûÏ¢ÍÆËÍĞ­ÒéÖĞÎ´×ö¶à¸öÏûÏ¢ÍÆËÍµÄ´¦Àí£¬µ¥¸öÏûÏ¢ÍÆËÍ¼°Í¨Öª¡¢ÇëÇóÎ´×ö²âÊÔ
+ * @author åˆ˜è¶… æ¶ˆæ¯æ¨é€åè®®ä¸­æœªåšå¤šä¸ªæ¶ˆæ¯æ¨é€çš„å¤„ç†ï¼Œå•ä¸ªæ¶ˆæ¯æ¨é€åŠé€šçŸ¥ã€è¯·æ±‚æœªåšæµ‹è¯•
  */
 public class ProtocolMessage extends ProtocolBase {
 
 	// type=1
 	String user;
-	String mType; // class 1±¨¾¯£¬2ÁÄÌì£¬3Í¨Öª
+	String mType; // class 1æŠ¥è­¦ï¼Œ2èŠå¤©ï¼Œ3é€šçŸ¥
 	String mDate;
-	String content; // ÏûÏ¢ÄÚÈİ£¨±¨¾¯ÏûÏ¢Îª£ºÀàĞÍ+¼¶±ğ£©
-	String attach; // ÏûÏ¢¸½¼ş£¨URL£©
-	int recv; // ÏûÏ¢½ÓÊÜÕßÕËºÅ
+	String content; // æ¶ˆæ¯å†…å®¹ï¼ˆæŠ¥è­¦æ¶ˆæ¯ä¸ºï¼šç±»å‹+çº§åˆ«ï¼‰
+	String attach; // æ¶ˆæ¯é™„ä»¶ï¼ˆURLï¼‰
+	int recv; // æ¶ˆæ¯æ¥å—è€…è´¦å·
+	MsgRecv msgRecv = null;
 
 	// type=3
 	int num;
 	String info;
-
 	// type=5
 	String askMsgType;
 	int askMsgNum;
@@ -45,11 +47,12 @@ public class ProtocolMessage extends ProtocolBase {
 	String[] contents = null;
 	String[] attachs = null;
 	String[] recvs = null;
+	String infoString;
 
 	@Override
 	void ParsePktProto(PacketInfo packetInfo) {
 		// TODO Auto-generated method stub
-		System.out.println("ÏûÏ¢ÍÆËÍ");
+		System.out.println("æ¶ˆæ¯æ¨é€");
 		this.revPacket = packetInfo;
 		StringBuffer stringBuffer = new StringBuffer();
 		for (int i = revPacket.getDatapos(); i < revPacket.getMessage().length; i++) {
@@ -59,20 +62,30 @@ public class ProtocolMessage extends ProtocolBase {
 		JsonAnalysis jsonAnalysis = new JsonAnalysis();
 		String data = jsonAnalysis.getValue(datas, "DATA");
 
-		// µ¥¸öÏûÏ¢ÍÆËÍÇëÇó
+		// å•ä¸ªæ¶ˆæ¯æ¨é€è¯·æ±‚
 		if (revPacket.getType() == ConstParam.TYPE_1) {
+
 			user = jsonAnalysis.getValue(data, "USER");
+
 			mType = jsonAnalysis.getValue(data, "CLASS");
+
 			mDate = jsonAnalysis.getValue(data, "DATE");
+
 			content = jsonAnalysis.getValue(data, "CONTENT");
+
 			attach = jsonAnalysis.getValue(data, "ATTACH");
-			recv = Integer.parseInt(jsonAnalysis.getValue(data, "RECV"));
+
+			recv = Integer.getInteger(jsonAnalysis.getValue(data, "RECV"));
+			
+
 		}
-		// ¶à¸öÏûÏ¢ÍÆËÍÇëÇó
+
+		// å¤šä¸ªæ¶ˆæ¯æ¨é€è¯·æ±‚
 		if (revPacket.getType() == ConstParam.TYPE_3) {
 			num = Integer.parseInt(jsonAnalysis.getValue(data, "NUM"));
-			// ½âÎöinfoÀïµÄÄÚÈİ£¬½«Êı¾İ·Ö±ğ´æÈëÊı×é
-			JSONArray jsonArr = JSONArray.fromObject(data);
+			// è§£æinfoé‡Œçš„å†…å®¹ï¼Œå°†æ•°æ®åˆ†åˆ«å­˜å…¥æ•°ç»„
+			info = jsonAnalysis.getValue(data, "INFO");
+			JSONArray jsonArr = JSONArray.fromObject(info);
 			for (int i = 0; i < jsonArr.size(); i++) {
 				users[i] = jsonArr.getJSONObject(i).getString("USER");
 				mTypes[i] = jsonArr.getJSONObject(i).getString("CLASS");
@@ -83,7 +96,7 @@ public class ProtocolMessage extends ProtocolBase {
 			}
 		}
 
-		// Î´¶ÁÏûÏ¢ÇëÇó
+		// æœªè¯»æ¶ˆæ¯è¯·æ±‚
 		if (revPacket.getType() == ConstParam.TYPE_5) {
 			askMsgNum = Integer.parseInt(jsonAnalysis.getValue(data, "NUM"));
 			askMsgType = jsonAnalysis.getValue(data, "CLASS");
@@ -95,9 +108,9 @@ public class ProtocolMessage extends ProtocolBase {
 	@Override
 	void ExecProto() {
 		// TODO Auto-generated method stub
-		// µ¥¸öÏûÏ¢ÍÆËÍÇëÇó
+		// å•ä¸ªæ¶ˆæ¯æ¨é€è¯·æ±‚
 		if (revPacket.getType() == ConstParam.TYPE_1) {
-			// ÔÚ¹¤×÷¶ÓÁĞÖĞÌí¼ÓÒ»¸öÈÎÎñ
+			// åœ¨å·¥ä½œé˜Ÿåˆ—ä¸­æ·»åŠ ä¸€ä¸ªä»»åŠ¡
 			MsgTask msgTask = new MsgTask();
 			msgTask.setMsgNum(1);
 			msgTask.setSendUserID(Integer.parseInt(user));
@@ -111,17 +124,18 @@ public class ProtocolMessage extends ProtocolBase {
 			}
 			msgTask.setContent(content);
 			msgTask.setAttach(attach);
-			msgTask.setRevUserID(recv); // Èô´æÔÚ½ÓÊÕÕß£¬ÔòrevIDÎª½ÓÊÕÕßID,Èô²»´æÔÚ½ÓÊÕÕß£¬revIDÎª0
+			msgTask.setRevUserID(recv); // è‹¥å­˜åœ¨æ¥æ”¶è€…ï¼Œåˆ™revIDä¸ºæ¥æ”¶è€…ID,è‹¥ä¸å­˜åœ¨æ¥æ”¶è€…ï¼ŒrevIDä¸º0
 			SysInfo.getMsgTaskQueue().add(msgTask);
-			// ÈÎÎñ¶ÓÁĞ²»Îª¿Õ Æô¶¯¹¤×÷Ïß³Ì
+			// ä»»åŠ¡é˜Ÿåˆ—ä¸ä¸ºç©º å¯åŠ¨å·¥ä½œçº¿ç¨‹
 			if (SysInfo.getMsgTaskQueue() != null) {
 				Thread msgTaskCheckThread = new Thread(new MsgTaskCheckThread());
 				msgTaskCheckThread.start();
 			}
 		}
-		// ¶à¸öÏûÏ¢ÍÆËÍ
+
+		// å¤šä¸ªæ¶ˆæ¯æ¨é€
 		if (revPacket.getType() == ConstParam.TYPE_3) {
-			// ÔÚ¹¤×÷¶ÓÁĞÖĞÌí¼ÓÒ»¸öÈÎÎñuser[i] = jsonArr.getJSONObject(i).getString("USER");
+			// åœ¨å·¥ä½œé˜Ÿåˆ—ä¸­æ·»åŠ ä¸€ä¸ªä»»åŠ¡user[i] = jsonArr.getJSONObject(i).getString("USER");
 
 			MsgTask msgTask = new MsgTask();
 			msgTask.setMsgNum(num);
@@ -143,49 +157,83 @@ public class ProtocolMessage extends ProtocolBase {
 				}
 				msgTask.setContent(content);
 				msgTask.setAttach(attach);
-				msgTask.setRevUserID(recv); // Èô´æÔÚ½ÓÊÕÕß£¬ÔòrevIDÎª½ÓÊÕÕßID,Èô²»´æÔÚ½ÓÊÕÕß£¬revIDÎª0
+				msgTask.setRevUserID(recv); // è‹¥å­˜åœ¨æ¥æ”¶è€…ï¼Œåˆ™revIDä¸ºæ¥æ”¶è€…ID,è‹¥ä¸å­˜åœ¨æ¥æ”¶è€…ï¼ŒrevIDä¸º0
 				SysInfo.getMsgTaskQueue().add(msgTask);
 			}
-			// ÈÎÎñ¶ÓÁĞ²»Îª¿Õ Æô¶¯¹¤×÷Ïß³Ì
+			// ä»»åŠ¡é˜Ÿåˆ—ä¸ä¸ºç©º å¯åŠ¨å·¥ä½œçº¿ç¨‹
 			if (SysInfo.getMsgTaskQueue() != null) {
 				Thread msgTaskCheckThread = new Thread(new MsgTaskCheckThread());
 				msgTaskCheckThread.start();
 			}
 		}
 
-		// Î´¶ÁÏûÏ¢ÇëÇó
+		// æœªè¯»æ¶ˆæ¯è¯·æ±‚
 		if (revPacket.getType() == ConstParam.TYPE_5) {
-			MsgRecv msgRecv = new MsgDao().findMsgRecvByRecvUserId(recv);
-			// ÏûÏ¢Î´¶Á
+			msgRecv = new MsgDao().findMsgRecvByRecvUserId(revPacket.getSid());
+			// æ¶ˆæ¯æœªè¯»
 			if (msgRecv.getState() == 1) {
-				byte[] unReadMsg = PackPkt(ConstParam.SENT_PKT_TYPE_1);
-				SendPkt(unReadMsg);
-				// É¾³ıÏûÏ¢Î´¶ÁÈÎÎñ¶ÓÁĞ
-				MsgTask msgTask = SysInfo.getInstance().getMsgTaskByRecvUserId(recv);
-				SysInfo.getMsgTaskQueue().remove(msgTask);
+				if (msgRecv.getMsgtype() == "1") {// æŠ¥è­¦
+					byte[] unReadMsg = PackPkt(1);
+					SendPkt(unReadMsg);
+				}
+				if (msgRecv.getMsgtype() == "2") {// èŠå¤©
+					byte[] unReadMsg = PackPkt(2);
+					SendPkt(unReadMsg);
+				}
+				if (msgRecv.getMsgtype() == "4") {// é€šçŸ¥
+					byte[] unReadMsg = PackPkt(4);
+					SendPkt(unReadMsg);
+
+				}
+				if (msgRecv.getMsgtype() == "0") {// é€šçŸ¥
+					byte[] unReadMsg = PackPkt(3);// æ‰€æœ‰ç±»å‹
+					SendPkt(unReadMsg);
+
+				}
+
+				// åˆ é™¤æ¶ˆæ¯æœªè¯»ä»»åŠ¡é˜Ÿåˆ—
+				// MsgTask msgTask =
+				// SysInfo.getInstance().getMsgTaskByRecvUserId(revPacket.getSid());
+				// SysInfo.getMsgTaskQueue().remove(msgTask);
 			}
 		}
 	}
 
 	@Override
 	byte[] PackPkt(int i) {
+
 		// TODO Auto-generated method stub
 		List<byte[]> packet = new ArrayList<byte[]>();
 		byte[] byte1 = "ZNAF".getBytes();
 		byte[] byteChar = new byte[4];
 		byteChar[0] = ConstParam.CMD_5; // cmd=5
-		byteChar[1] = ConstParam.TYPE_6; // Î´¶ÁÏûÏ¢Ó¦´ğ
-		byteChar[2] = ConstParam.OPT_16; // opt=16 Ó¦´ğ±¨ÎÄ
+		byteChar[1] = ConstParam.TYPE_6; // æœªè¯»æ¶ˆæ¯åº”ç­”
+		byteChar[2] = ConstParam.OPT_16; // opt=16 åº”ç­”æŠ¥æ–‡
 		byteChar[3] = ConstParam.SORT_3; // sort=3
 		int sendseq = revPacket.getSeq(); // ??
 		int ackseq = revPacket.getSeq(); // ??
+		MsgTask msgTask = new MsgTask();
+		switch (i) {
+		case 1:
+			Msg_alarm alarm = new MsgDao().findMsgalarmByRecvUserId(msgRecv.getRecvuserid());//
+			if (alarm != null) {
+				infoString = "{'DATA':{'USER':'" + alarm.getDeviceid() + "','CLASS':'" + 1 + "','DATA':'"
+						+ alarm.getTime() + "','CONTENT':'" + alarm.getType() + alarm.getLevel() + "'+'ATTACH':'"
+						+ alarm.getUrl() + "'}}";
+			}
+			break;
+		case 2:
 
-		MsgTask msgTask = SysInfo.getInstance().getMsgTaskByRecvUserId(recv);
-		String infoString = "{'DATA':{'USER':'" + msgTask.getSendUserID() + "','CLASS':'" + msgTask.getmType()
-				+ "','DATA':'" + msgTask.getmDate() + "','CONTENT':'" + msgTask.getContent() + "'+'ATTACH':'"
-				+ msgTask.getAttach() + "'}}";
-		String packetBody = "{'DATA':{'NUM':'" + msgTask.getMsgNum() + "','INFO':'" + infoString + "'}}";
+			Msg_chat chat = new MsgDao().findMsgChatByRecvUserId(msgRecv.getRecvuserid());//
+			if (chat != null) {
+				infoString = "{'DATA':{'USER':'" + chat.getSendid() + "','CLASS':'" + 2 + "','DATA':'"
+						+ chat.getSendtime() + "','CONTENT':'" + chat.getContent() + "'+'ATTACH':'" + null + "'}}";
 
+			}
+			break;
+		}
+
+		String packetBody = "{'DATA':{'NUM':'" + 1 + "','INFO':'" + infoString + "'}}";
 		ByteArrayProc byteArrayProc = new ByteArrayProc();
 		packet.add(byte1);
 		packet.add(byteChar);
@@ -195,7 +243,7 @@ public class ProtocolMessage extends ProtocolBase {
 		String packetBodyJson = new JsonAnalysis().getJsonByObject(packetBody);
 		byte[] packetBodyJsonByte = packetBodyJson.getBytes();
 		packet.add(packetBodyJsonByte);
-		byte[] packets = byteArrayProc.sysCopy(packet); // ½«¶à¸öbyte[]Æ´½Ó
+		byte[] packets = byteArrayProc.sysCopy(packet); // å°†å¤šä¸ªbyte[]æ‹¼æ¥
 		return packets;
 	}
 

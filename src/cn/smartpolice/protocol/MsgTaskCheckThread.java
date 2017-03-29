@@ -9,7 +9,6 @@ import org.apache.mina.core.buffer.IoBuffer;
 import cn.smartpolice.hibernate.Msg_alarm;
 import cn.smartpolice.hibernate.Msg_chat;
 import cn.smartpolice.hibernate.Msg_notice;
-import cn.smartpolice.hibernate.Msg_publish;
 import cn.smartpolice.netdao.MsgDao;
 import cn.smartpolice.netdao.MsgRecv;
 import cn.smartpolice.netdao.RelateDao;
@@ -20,9 +19,9 @@ import cn.smartpolice.workbean.SysInfo;
 import cn.smartpolice.workbean.UserNode;
 
 /**
- * ÏûÏ¢ÍÆËÍ¼ì²éÏß³Ì ¼ì²éÏûÏ¢ÍÆËÍÈÎÎñ¶ÓÁĞ Èô¶ÓÁĞ²»ÎªnullÔò¸ù¾İÈÎÎñnodeĞÅÏ¢£¬ÔÚÏûÏ¢·¢ËÍ¼ÇÂ¼±íÖĞÌí¼Ó¼ÇÂ¼£¬²¢ÔÚ´ËÏß³ÌÖĞ¸øÔÚÏßµÄ½Úµã·¢ËÍÎ´¶ÁÏûÏ¢Í¨Öª
+ * æ¶ˆæ¯æ¨é€æ£€æŸ¥çº¿ç¨‹ æ£€æŸ¥æ¶ˆæ¯æ¨é€ä»»åŠ¡é˜Ÿåˆ— è‹¥é˜Ÿåˆ—ä¸ä¸ºnullåˆ™æ ¹æ®ä»»åŠ¡nodeä¿¡æ¯ï¼Œåœ¨æ¶ˆæ¯å‘é€è®°å½•è¡¨ä¸­æ·»åŠ è®°å½•ï¼Œå¹¶åœ¨æ­¤çº¿ç¨‹ä¸­ç»™åœ¨çº¿çš„èŠ‚ç‚¹å‘é€æœªè¯»æ¶ˆæ¯é€šçŸ¥
  * 
- * @author Áõ³¬
+ * @author åˆ˜è¶…
  *
  */
 public class MsgTaskCheckThread implements Runnable {
@@ -31,98 +30,182 @@ public class MsgTaskCheckThread implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		for (MsgTask msgTask : SysInfo.getMsgTaskQueue()) {
-			// ¸ÃÈÎÎñ½ÚµãÏûÏ¢ÀàĞÍÊÇ±¨¾¯ÏûÏ¢
+			// è¯¥ä»»åŠ¡èŠ‚ç‚¹æ¶ˆæ¯ç±»å‹æ˜¯æŠ¥è­¦æ¶ˆæ¯
 			if (msgTask.getmType() == 1) {
-				// Ìí¼ÓÏûÏ¢µ½±¨¾¯ÏûÏ¢±í
+				// æ·»åŠ æ¶ˆæ¯åˆ°æŠ¥è­¦æ¶ˆæ¯è¡¨
 				Msg_alarm alarm = new Msg_alarm();
 				alarm.setDeviceid(msgTask.getSendUserID());
 				alarm.setUrl(msgTask.getAttach());
 				alarm.setState(true);
 				alarm.setTime((Date) msgTask.getmDate());
 				String[] typeAndLevel = msgTask.getContent().split("+");
-				alarm.setType(Integer.parseInt(typeAndLevel[0]));// ÀàĞÍ
-				alarm.setLevel(Integer.parseInt(typeAndLevel[1]));// ¼¶±ğ
-				// ²åÈëmsg_alarm±í
+				alarm.setType(Integer.parseInt(typeAndLevel[0]));// ç±»å‹
+				alarm.setLevel(Integer.parseInt(typeAndLevel[1]));// çº§åˆ«
+				// æ’å…¥msg_alarmè¡¨
 				new MsgDao().insertMsgAlarm(alarm);
 
-				// ²»´æÔÚ½ÓÊÕ×Å£¬½«ÏûÏ¢Í¨ÖªÍÆËÍ¸øËùÓĞ¹ØÁªÈË
+				// ä¸å­˜åœ¨æ¥æ”¶ç€ï¼Œå°†æ¶ˆæ¯é€šçŸ¥æ¨é€ç»™æ‰€æœ‰å…³è”äºº
 				if (msgTask.getRevUserID() == 0) {
-					// ²éÑ¯¹ØÁª¹ØÏµ±íµÃµ½ËùÓĞ¹ØÁªÈËid
+					// æŸ¥è¯¢å…³è”å…³ç³»è¡¨å¾—åˆ°æ‰€æœ‰å…³è”äººid
 					String[] userIdArray = new RelateDao().findUserIdByDeviceId(msgTask.getSendUserID());
 					for (String recvuserid : userIdArray) {
-						// ÔÚÏûÏ¢¼ÇÂ¼±íÖĞÕë¶ÔÃ¿Ò»¸ö¹ØÁªÈËÌí¼ÓÒ»Ìõ¼ÇÂ¼
-						MsgRecv msgRecv = new MsgRecv();
-						// ½«±¨¾¯ÏûÏ¢±íÖĞµÄÏûÏ¢id·ÅÈë¼ÇÂ¼±íÖĞ ĞèÒª²âÊÔÖ´ĞĞ²åÈë²Ù×÷ºó»á²»»á·µ»Øid??
-						msgRecv.setMessageid(alarm.getAlarmid()); // ??
-						msgRecv.setSenduserid(msgTask.getSendUserID());
-						msgRecv.setRecvuserid(Integer.parseInt(recvuserid));
-						msgRecv.setMsgtype("0");
-						msgRecv.setState(1); // Î´¶Á
-						msgRecv.setRecvtime(msgTask.getmDate());
-
-						// ²éÕÒ¸Ã¹ØÁªÈËÊÇ·ñÔÚÏß£¬Èç¹ûÔÚÏß£¬·â×°Ò»¸öÍ¨Öª±¨ÎÄ£¬·¢ËÍ¸ø¸Ã¹ØÁªÈË
+						// æŸ¥æ‰¾è¯¥å…³è”äººæ˜¯å¦åœ¨çº¿ï¼Œå¦‚æœåœ¨çº¿ï¼Œå°è£…ä¸€ä¸ªé€šçŸ¥æŠ¥æ–‡ï¼Œå‘é€ç»™è¯¥å…³è”äºº
 						UserNode userNode = SysInfo.getInstance().getAppNodeById(Integer.parseInt(recvuserid));
-						// userNode ÔÚÏß
+						// userNode åœ¨çº¿
 						if (userNode != null) {
-							// ¹¹ÔìÎ´¶ÁÏûÏ¢Í¨Öª±¨ÎÄ
-							byte[] unreadMsgNotice = PackPkt(msgTask);
-							userNode.getIoSession().write(IoBuffer.wrap(unreadMsgNotice));
+							// å°è£…é€šçŸ¥æ¶ˆæ¯å‘é€æŠ¥æ–‡ï¼Œå°†é€šçŸ¥æ¶ˆæ¯å‘é€ç»™åœ¨çº¿çš„äºº
+							byte[] msgNotice = PackPkt(msgTask);
+							userNode.getIoSession().write(IoBuffer.wrap(msgNotice));
+							// åœ¨æ¶ˆæ¯è®°å½•è¡¨ä¸­é’ˆå¯¹æ¯ä¸€ä¸ªå…³è”äººæ·»åŠ ä¸€æ¡è®°å½•
+							MsgRecv msgRecv = new MsgRecv();
+							// å°†æŠ¥è­¦æ¶ˆæ¯è¡¨ä¸­çš„æ¶ˆæ¯idæ”¾å…¥è®°å½•è¡¨ä¸­ éœ€è¦æµ‹è¯•æ‰§è¡Œæ’å…¥æ“ä½œåä¼šä¸ä¼šè¿”å›id??
+							msgRecv.setMessageid(alarm.getAlarmid()); // ??
+							msgRecv.setSenduserid(msgTask.getSendUserID());
+							msgRecv.setRecvuserid(Integer.parseInt(recvuserid));
+							msgRecv.setMsgtype("0");
+							msgRecv.setState(1); // æ ‡è®°ä¸ºæœªè¯»
+							msgRecv.setRecvtime(msgTask.getmDate());
 						}
+						// å¦‚æœuserNodeä¸åœ¨çº¿
+						// å­˜å…¥æ¶ˆæ¯è®°å½•è¡¨
+						if (userNode == null) {
+							MsgRecv msgRecv = new MsgRecv();
+							// å°†æŠ¥è­¦æ¶ˆæ¯è¡¨ä¸­çš„æ¶ˆæ¯idæ”¾å…¥è®°å½•è¡¨ä¸­ éœ€è¦æµ‹è¯•æ‰§è¡Œæ’å…¥æ“ä½œåä¼šä¸ä¼šè¿”å›id??
+							msgRecv.setMessageid(alarm.getAlarmid()); // ??
+							msgRecv.setSenduserid(msgTask.getSendUserID());
+							msgRecv.setRecvuserid(Integer.parseInt(recvuserid));
+							msgRecv.setMsgtype("0");
+							msgRecv.setState(1); // æ ‡è®°ä¸ºæœªè¯»
+							msgRecv.setRecvtime(msgTask.getmDate());
+						}
+
 					}
 				}
-				// ´æÔÚ½ÓÊÕÕßid,Ö»ÓĞÒ»¸ö½ÓÊÕÕß
+				// å­˜åœ¨æ¥æ”¶è€…id,åªæœ‰ä¸€ä¸ªæ¥æ”¶è€…
 				if (msgTask.getRevUserID() != 0) {
-					byte[] unreadMsgNotice = PackPkt(msgTask);
+
 					UserNode userNode = SysInfo.getInstance().getAppNodeById(msgTask.getRevUserID());
-					userNode.getIoSession().write(IoBuffer.wrap(unreadMsgNotice));// ´æÔÚ½ÓÊÜÕßÔò½«±¨¾¯ÏûÏ¢·¢ËÍ¸ø½ÓÊÕÕß
+					if (userNode != null) {
+						// åœ¨çº¿å°±å‘é€é€šçŸ¥æŠ¥æ–‡ï¼Œæœªåœ¨çº¿å­˜å…¥æ¶ˆæ¯è®°å½•è¡¨ï¼Œæ ‡è®°ä¸ºæœªè¯»
+						byte[] msgNotice = PackPkt(msgTask);
+						userNode.getIoSession().write(IoBuffer.wrap(msgNotice));
+						
+							// åœ¨æ¶ˆæ¯è®°å½•è¡¨ä¸­é’ˆå¯¹æ¯ä¸€ä¸ªå…³è”äººæ·»åŠ ä¸€æ¡è®°å½•
+							MsgRecv msgRecv = new MsgRecv();
+							// å°†æŠ¥è­¦æ¶ˆæ¯è¡¨ä¸­çš„æ¶ˆæ¯idæ”¾å…¥è®°å½•è¡¨ä¸­ éœ€è¦æµ‹è¯•æ‰§è¡Œæ’å…¥æ“ä½œåä¼šä¸ä¼šè¿”å›id??
+							msgRecv.setMessageid(alarm.getAlarmid()); // ??
+							msgRecv.setSenduserid(msgTask.getSendUserID());
+							msgRecv.setRecvuserid(msgTask.getRevUserID());
+							msgRecv.setMsgtype("0");
+							msgRecv.setState(1); // æ ‡è®°ä¸ºæœªè¯»
+							msgRecv.setRecvtime(msgTask.getmDate());
+						}
+						
+					
+					if (userNode == null) {
+						MsgRecv msgRecv = new MsgRecv();
+						// å°†æŠ¥è­¦æ¶ˆæ¯è¡¨ä¸­çš„æ¶ˆæ¯idæ”¾å…¥è®°å½•è¡¨ä¸­ éœ€è¦æµ‹è¯•æ‰§è¡Œæ’å…¥æ“ä½œåä¼šä¸ä¼šè¿”å›id??
+						msgRecv.setMessageid(alarm.getAlarmid()); // ??
+						msgRecv.setSenduserid(msgTask.getSendUserID());
+						msgRecv.setRecvuserid(msgTask.getRevUserID());
+						msgRecv.setMsgtype("0");
+						msgRecv.setState(1); // æ ‡è®°ä¸ºæœªè¯»
+						msgRecv.setRecvtime(msgTask.getmDate());
+					}
+
 				}
 
 			}
-			// type==2ÎªÁÄÌìÏûÏ¢
+			// type==2ä¸ºèŠå¤©æ¶ˆæ¯
 			if (msgTask.getmType() == 2) {
 				Msg_chat chat = new Msg_chat();
 				chat.setContent(msgTask.getContent());
 				chat.setSendid(msgTask.getSendUserID());
 				chat.setSendtime((Date) msgTask.getmDate());
 				chat.setRecvid(msgTask.getRevUserID());
-				// ²åÈëÁÄÌìÏûÏ¢±í
+				// æ’å…¥èŠå¤©æ¶ˆæ¯è¡¨
 				new MsgDao().insertMsgChat(chat);
 				//
 				UserNode userNode = SysInfo.getInstance().getAppNodeById(msgTask.getRevUserID());
-				// userNode ²»ÔÚÏß
-				if (userNode == null) {
+				// userNode åœ¨çº¿
+				if(userNode != null) {
+					userNode.getIoSession().write(PackPkts(msgTask));//åœ¨çº¿å³å‘é€ç»™å¯¹æ–¹
 					MsgRecv msgRecv = new MsgRecv();
-					// ½«±¨¾¯ÏûÏ¢±íÖĞµÄÏûÏ¢id·ÅÈë¼ÇÂ¼±íÖĞ ĞèÒª²âÊÔÖ´ĞĞ²åÈë²Ù×÷ºó»á²»»á·µ»Øid??
+					// å°†æŠ¥è­¦æ¶ˆæ¯è¡¨ä¸­çš„æ¶ˆæ¯idæ”¾å…¥è®°å½•è¡¨ä¸­ éœ€è¦æµ‹è¯•æ‰§è¡Œæ’å…¥æ“ä½œåä¼šä¸ä¼šè¿”å›id??
 					msgRecv.setMessageid(chat.getChatid());
 					msgRecv.setSenduserid(msgTask.getSendUserID());
 					msgRecv.setRecvuserid(msgTask.getRevUserID());
-					msgRecv.setMsgtype("2");// 2ÎªÁÄÌìÏûÏ¢
-					msgRecv.setState(1); // Î´¶Á
+					msgRecv.setMsgtype("2");// 2ä¸ºèŠå¤©æ¶ˆæ¯
+					msgRecv.setState(0); // å·²è¯»
 					msgRecv.setRecvtime(msgTask.getmDate());
-					new MsgDao().insertMsgRecv(msgRecv);// ½«Î´¶ÁÏûÏ¢²åÈëÏûÏ¢¼ÇÂ¼±íÖĞ
-				} else { // Èç¹û¶Ô·½ÔÚÏß ¹¹ÔìÏûÏ¢±¨ÎÄ·¢ËÍ¸ø¶Ô·½
-					userNode.getIoSession().write(PackPkts(msgTask));
-
+					new MsgDao().insertMsgRecv(msgRecv);// å°†æœªè¯»æ¶ˆæ¯æ’å…¥æ¶ˆæ¯è®°å½•è¡¨ä¸­
+				}
+				
+				if (userNode == null) {
+					MsgRecv msgRecv = new MsgRecv();
+					// å°†æŠ¥è­¦æ¶ˆæ¯è¡¨ä¸­çš„æ¶ˆæ¯idæ”¾å…¥è®°å½•è¡¨ä¸­ éœ€è¦æµ‹è¯•æ‰§è¡Œæ’å…¥æ“ä½œåä¼šä¸ä¼šè¿”å›id??
+					msgRecv.setMessageid(chat.getChatid());
+					msgRecv.setSenduserid(msgTask.getSendUserID());
+					msgRecv.setRecvuserid(msgTask.getRevUserID());
+					msgRecv.setMsgtype("2");// 2ä¸ºèŠå¤©æ¶ˆæ¯
+					msgRecv.setState(1); // æœªè¯»
+					msgRecv.setRecvtime(msgTask.getmDate());
+					new MsgDao().insertMsgRecv(msgRecv);// å°†æœªè¯»æ¶ˆæ¯æ’å…¥æ¶ˆæ¯è®°å½•è¡¨ä¸­
 				}
 
 			}
-			//Í¨ÖªÏûÏ¢
+			// é€šçŸ¥æ¶ˆæ¯
 			if (msgTask.getmType() == 4) {
 				Msg_notice notice = new Msg_notice();
 				notice.setSendid(msgTask.getSendUserID());
-				notice.setSendtime((Date) msgTask.getmDate());				
+				notice.setSendtime((Date) msgTask.getmDate());
 				String[] contents = msgTask.getContent().split("+");
-				notice.setTitle(contents[0]);//±êÌâ
+				notice.setTitle(contents[0]);// æ ‡é¢˜
 				notice.setContent(contents[1]);
 				new MsgDao().insertMsgNotice(notice);
-				
+				// ä¸º0å…¨éƒ¨äººå‘˜
+				if (msgTask.getRevUserID() == 0) {
+					String[] userIdArray = new RelateDao().findUserIdByDeviceId(msgTask.getSendUserID());
+					for (String recvuserid : userIdArray) {
+						MsgRecv msgRecv = new MsgRecv();
+						// å°†æŠ¥è­¦æ¶ˆæ¯è¡¨ä¸­çš„æ¶ˆæ¯idæ”¾å…¥è®°å½•è¡¨ä¸­ éœ€è¦æµ‹è¯•æ‰§è¡Œæ’å…¥æ“ä½œåä¼šä¸ä¼šè¿”å›id??
+						msgRecv.setMessageid(notice.getNoticeid()); // ??
+						msgRecv.setSenduserid(msgTask.getSendUserID());
+						msgRecv.setRecvuserid(Integer.parseInt(recvuserid));
+						msgRecv.setMsgtype("4");
+						msgRecv.setState(1); // æœªè¯»
+						msgRecv.setRecvtime(msgTask.getmDate());
+
+						// æŸ¥æ‰¾è¯¥å…³è”äººæ˜¯å¦åœ¨çº¿ï¼Œå¦‚æœåœ¨çº¿ï¼Œå°è£…ä¸€ä¸ªé€šçŸ¥æŠ¥æ–‡ï¼Œå‘é€ç»™è¯¥å…³è”äºº
+						UserNode userNode = SysInfo.getInstance().getAppNodeById(Integer.parseInt(recvuserid));
+						// userNode åœ¨çº¿
+						if (userNode != null) {
+							// æ„é€ æœªè¯»æ¶ˆæ¯é€šçŸ¥æŠ¥æ–‡
+							byte[] unreadMsgNotice = PackPkt(msgTask);
+							userNode.getIoSession().write(IoBuffer.wrap(unreadMsgNotice));
+						}
+					}
+				}
+				// å‘å¸ƒè®°å½•ï¼ˆå¦‚ä½•è¯»å–æ‰€æœ‰äººä¿¡æ¯ï¼‰
+				if (msgTask.getRevUserID() == 1) {
+					byte[] unreadMsgNotice = PackPkt(msgTask);
+					UserNode userNode = SysInfo.getInstance().getAppNodeById(msgTask.getRevUserID());
+					userNode.getIoSession().write(IoBuffer.wrap(unreadMsgNotice));// å­˜åœ¨æ¥å—è€…åˆ™å°†æŠ¥è­¦æ¶ˆæ¯å‘é€ç»™æ¥æ”¶è€…
+				}
+				// å•ä¸ªäººå‘˜
+				if (msgTask.getRevUserID() == 2) {
+					byte[] unreadMsgNotice = PackPkt(msgTask);
+					UserNode userNode = SysInfo.getInstance().getAppNodeById(msgTask.getRevUserID());
+					userNode.getIoSession().write(IoBuffer.wrap(unreadMsgNotice));// å­˜åœ¨æ¥å—è€…åˆ™å°†é€šçŸ¥æ¶ˆæ¯å‘é€ç»™æ¥æ”¶è€…
+				}
+
 			}
 
 		}
 
 	}
 
-	// ¹¹ÔìÎ´¶ÁÏûÏ¢Í¨Öª±¨ÎÄ
+	// æ„é€ æœªè¯»æ¶ˆæ¯é€šçŸ¥æŠ¥æ–‡
 	public byte[] PackPkt(MsgTask msgTask) {
 
 		// TODO Auto-generated method stub
@@ -133,7 +216,7 @@ public class MsgTaskCheckThread implements Runnable {
 
 		byteChar[1] = ConstParam.TYPE_4;
 
-		byteChar[2] = ConstParam.OPT_8; // opt=16 Ó¦´ğ±¨ÎÄ
+		byteChar[2] = ConstParam.OPT_8; // opt=16 åº”ç­”æŠ¥æ–‡
 		byteChar[3] = ConstParam.SORT_3; // sort=3
 		int sendseq = msgTask.getPacketInfo().getSeq(); // ??
 		int ackseq = msgTask.getPacketInfo().getSeq(); // ??
@@ -147,11 +230,11 @@ public class MsgTaskCheckThread implements Runnable {
 		String packetBodyJson = new JsonAnalysis().getJsonByObject(packetBody);
 		byte[] packetBodyJsonByte = packetBodyJson.getBytes();
 		packet.add(packetBodyJsonByte);
-		byte[] packets = byteArrayProc.sysCopy(packet); // ½«¶à¸öbyte[]Æ´½Ó
+		byte[] packets = byteArrayProc.sysCopy(packet); // å°†å¤šä¸ªbyte[]æ‹¼æ¥
 		return packets;
 	}
 
-	// ¹¹ÔìÏûÏ¢ÍÆËÍÇëÇó±¨ÎÄ
+	// æ„é€ æ¶ˆæ¯æ¨é€è¯·æ±‚æŠ¥æ–‡
 	public byte[] PackPkts(MsgTask msgTask) {
 		String packetBody = null;
 		// TODO Auto-generated method stub
@@ -162,7 +245,7 @@ public class MsgTaskCheckThread implements Runnable {
 
 		byteChar[1] = ConstParam.TYPE_1;
 
-		byteChar[2] = ConstParam.OPT_8; // opt=16 Ó¦´ğ±¨ÎÄ
+		byteChar[2] = ConstParam.OPT_8; // opt=16 åº”ç­”æŠ¥æ–‡
 		byteChar[3] = ConstParam.SORT_3; // sort=3
 		int sendseq = msgTask.getPacketInfo().getSeq(); // ??
 		int ackseq = msgTask.getPacketInfo().getSeq(); // ??
@@ -180,7 +263,7 @@ public class MsgTaskCheckThread implements Runnable {
 		String packetBodyJson = new JsonAnalysis().getJsonByObject(packetBody);
 		byte[] packetBodyJsonByte = packetBodyJson.getBytes();
 		packet.add(packetBodyJsonByte);
-		byte[] packets = byteArrayProc.sysCopy(packet); // ½«¶à¸öbyte[]Æ´½Ó
+		byte[] packets = byteArrayProc.sysCopy(packet); // å°†å¤šä¸ªbyte[]æ‹¼æ¥
 		return packets;
 	}
 

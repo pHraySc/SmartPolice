@@ -1,7 +1,7 @@
-package cn.smartpolice.webservice;
+package cn.smartpolice.dao;
 
 import cn.smartpolice.hibernate.PlatMsgAnnounce;
 
-public interface PlatMsgAnounceService {
+public interface PlatMsgAnnounceDao {
 	void AddPlatMsgToDB(PlatMsgAnnounce announce);
 }

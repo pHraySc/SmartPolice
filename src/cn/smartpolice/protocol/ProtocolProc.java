@@ -1,6 +1,7 @@
 package cn.smartpolice.protocol;
 
 import java.net.InetSocketAddress;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -30,50 +31,50 @@ public class ProtocolProc {
 		packetInfo.setIoSession(ios);
 		if(ParsePktHead(message) == true){
 			if(CheckPktValid() == true){
-				//½øÈë¾ßÌåĞ­Òé´¦Àí
+				//è¿›å…¥å…·ä½“åè®®å¤„ç†
 				SysInfo.getPrtocolBases()[packetInfo.getCmd()].ParsePktProto(packetInfo);
 			}
 		}
 	}
 	
 
-	// ½âÎö±¨ÎÄÊ×²¿
+	// è§£ææŠ¥æ–‡é¦–éƒ¨
 	public Boolean ParsePktHead(byte[] message) {
 		// TODO Auto-generated method stub
-		System.out.println("½â°ü¿ªÊ¼");
+		System.out.println("è§£åŒ…å¼€å§‹");
 		if (message.length >= ConstParam.MASSAGE_LEN) {
-			packetInfo.setMessage(message); // Îª±¨ÎÄĞÅÏ¢¸³Öµ
+			packetInfo.setMessage(message); // ä¸ºæŠ¥æ–‡ä¿¡æ¯èµ‹å€¼
 			packetInfo.setDate(new Date());
-			packetInfo.setLength(message.length);// ±¨ÎÄ³¤¶È
+			packetInfo.setLength(message.length);// æŠ¥æ–‡é•¿åº¦
 			StringBuffer strb = new StringBuffer();
 			for (int i = 0; i < 4; i++)
 				strb.append((char) message[i]);
 			String znaf = strb.toString();
 
-			if (znaf.equals("ZNAF")) {// °üº¬¡°ZNAF¡±Ê±½âÎö
+			if (znaf.equals("ZNAF")) {// åŒ…å«â€œZNAFâ€æ—¶è§£æ
 				packetInfo.setCmd(message[4]);
 				packetInfo.setType(message[5]);
 				packetInfo.setOpt(message[6]);
 				packetInfo.setSort(message[7]);
 
-				if (packetInfo.getCmd() <= ConstParam.MAX_CMD) {// Ğ¡ÓÚ13Ê±½âÎö
-					int sid; // ½âÎöbyte[] messageµÚ8~12¸ö×Ö½ÚÎªsid
+				if (packetInfo.getCmd() <= ConstParam.MAX_CMD) {// å°äº13æ—¶è§£æ
+					int sid; // è§£æbyte[] messageç¬¬8~12ä¸ªå­—èŠ‚ä¸ºsid
 					sid = (int) (message[8]) | (message[9] << 8)
 							| (message[10] << 16) | (message[11] << 24);
 					packetInfo.setSid(sid);
-					int seq; // ½âÎöbyte[] messageµÚ12~15¸ö×Ö½ÚÎªseq
+					int seq; // è§£æbyte[] messageç¬¬12~15ä¸ªå­—èŠ‚ä¸ºseq
 					seq = (int) ((message[12]) | (message[13] << 8)
 							| (message[14] << 16) | message[15] << 24);
 					packetInfo.setSeq(seq);
-					int ack; // ½âÎöbyte[] messageµÚ16~19¸ö×Ö½ÚÎªack
+					int ack; // è§£æbyte[] messageç¬¬16~19ä¸ªå­—èŠ‚ä¸ºack
 					ack = (int) ((message[16]) | (message[17] << 8)
 							| (message[18] << 16) | message[19] << 24);
 					packetInfo.setAck(ack);
 
-					// ·Ç×¢²á±¨ÎÄÊÇ·ñsid>0
+					// éæ³¨å†ŒæŠ¥æ–‡æ˜¯å¦sid>0
 					if (!(packetInfo.getCmd() == ConstParam.CMD_2
 							&& packetInfo.getType() == ConstParam.TYPE_1) && sid > 0) {
-						// ¸ù¾İopt£¬½âÎöÊ×²¿Ñ¡Ïî
+						// æ ¹æ®optï¼Œè§£æé¦–éƒ¨é€‰é¡¹
 						StringBuffer buffer = new StringBuffer();
 						for (int i = 20; i < message.length; i++) {
 							buffer.append((char) message[i]);
@@ -81,9 +82,9 @@ public class ProtocolProc {
 						String datas = buffer.toString();
 						int datapos = datas.indexOf("{\"DATA\"", 20)
 								+ (ConstParam.MASSAGE_LEN + 1);
-						packetInfo.setDatapos(datapos);// Êı¾İÓòµÄÆğÊ¼Î»ÖÃ
+						packetInfo.setDatapos(datapos);// æ•°æ®åŸŸçš„èµ·å§‹ä½ç½®
 						byte opt = packetInfo.getOpt();
-						if ((opt & 0x01) != 0) { // µÚ0Î»£¬¼´1Ê±£¬±íÊ¾´Ë±¨ÎÄÔÚ·şÎñÆ÷½øĞĞ×ª·¢´¦Àí
+						if ((opt & 0x01) != 0) { // ç¬¬0ä½ï¼Œå³1æ—¶ï¼Œè¡¨ç¤ºæ­¤æŠ¥æ–‡åœ¨æœåŠ¡å™¨è¿›è¡Œè½¬å‘å¤„ç†
 							String hopt1 = new JsonAnalysis().getValue(datas,
 									"HOPT");
 							if (hopt1 != null) {
@@ -93,7 +94,7 @@ public class ProtocolProc {
 								packetInfo.setDid(Integer.parseInt(did));
 							}
 						}
-						if ((opt & 0x02) != 0) { // µÚ1Î»£¬¼´2Ê±£¬±íÊ¾´Ë±¨ÎÄ¼ÓÃÜ´¦Àí¹ı
+						if ((opt & 0x02) != 0) { // ç¬¬1ä½ï¼Œå³2æ—¶ï¼Œè¡¨ç¤ºæ­¤æŠ¥æ–‡åŠ å¯†å¤„ç†è¿‡
 							String hopt2 = new JsonAnalysis().getValue(datas,
 									"HOPT");
 							if (hopt2 != null) {
@@ -103,7 +104,7 @@ public class ProtocolProc {
 								packetInfo.setDid(Integer.parseInt(keyseq));
 							}
 						}
-						if ((opt & 0x04) != 0) { // µÚ2Î»£¬¼´4Ê±£¬±íÊ¾´Ë±¨ÎÄĞ¯´øÔ´µØÖ·£¬±ãÓÚNAT´©Í¸´¦Àí
+						if ((opt & 0x04) != 0) { // ç¬¬2ä½ï¼Œå³4æ—¶ï¼Œè¡¨ç¤ºæ­¤æŠ¥æ–‡æºå¸¦æºåœ°å€ï¼Œä¾¿äºNATç©¿é€å¤„ç†
 							String hopt3 = new JsonAnalysis().getValue(datas,
 									"HOPT");
 							if (hopt3 != null) {
@@ -117,97 +118,97 @@ public class ProtocolProc {
 								packetInfo.setSport(Integer.parseInt(sport));
 							}
 						}
-						if ((opt & 0x08) != 0) { // µÚ3Î»£¬¼´8Ê±£¬±íÊ¾´Ë±¨ÎÄÊÇÇëÇó±¨ÎÄ»òÕßĞèÒªÈ·ÈÏµÄ±¨ÎÄ
+						if ((opt & 0x08) != 0) { // ç¬¬3ä½ï¼Œå³8æ—¶ï¼Œè¡¨ç¤ºæ­¤æŠ¥æ–‡æ˜¯è¯·æ±‚æŠ¥æ–‡æˆ–è€…éœ€è¦ç¡®è®¤çš„æŠ¥æ–‡
 
 						}
-						if ((opt & 0x10) != 0) { // µÚ4Î»£¬¼´16Ê±£¬±íÊ¾´Ë±¨ÎÄÊÇÓ¦´ğ±¨ÎÄ£¬È·ÈÏºÅÓĞĞ§
+						if ((opt & 0x10) != 0) { // ç¬¬4ä½ï¼Œå³16æ—¶ï¼Œè¡¨ç¤ºæ­¤æŠ¥æ–‡æ˜¯åº”ç­”æŠ¥æ–‡ï¼Œç¡®è®¤å·æœ‰æ•ˆ
 
 						}
-						if ((opt & 0x20) != 0) { // µÚ5Î»£¬¼´32Ê±£¬±íÊ¾´Ë±¨ÎÄºóÃæÓĞ·Çjson¸ñÊ½£¬Ö÷ÒªÓÃÓÚ´«ÊäÓĞ¶ş½øÖÆ¸ñÊ½Êı¾İ£¬²»ÄÜÍêÈ«Ê¹ÓÃjson½âÎöÆ÷½øĞĞ½âÎö
+						if ((opt & 0x20) != 0) { // ç¬¬5ä½ï¼Œå³32æ—¶ï¼Œè¡¨ç¤ºæ­¤æŠ¥æ–‡åé¢æœ‰éjsonæ ¼å¼ï¼Œä¸»è¦ç”¨äºä¼ è¾“æœ‰äºŒè¿›åˆ¶æ ¼å¼æ•°æ®ï¼Œä¸èƒ½å®Œå…¨ä½¿ç”¨jsonè§£æå™¨è¿›è¡Œè§£æ
 
 						}
 					
 					return true;
 					} else
-						System.out.println("·Ç×¢²á±¨ÎÄsid<0");
+						System.out.println("éæ³¨å†ŒæŠ¥æ–‡sid<0");
 					return false;
 				} else
 					System.out.println("cmd>12");
 				return false;
 			} else
-				System.out.println("±¨ÎÄÍ·²¿²»°üº¬ZNAF");
+				System.out.println("æŠ¥æ–‡å¤´éƒ¨ä¸åŒ…å«ZNAF");
 			return false;
 		} else
-			System.out.println("±¨ÎÄ³¤¶ÈĞ¡ÓÚ20×Ö½Ú");
+			System.out.println("æŠ¥æ–‡é•¿åº¦å°äº20å­—èŠ‚");
 		return false;
 	}
 	
-	// ¼ì²é±¨ÎÄÓĞĞ§ĞÔ£¬ËùÓĞĞ­Òé¶¼ĞèÒªµÄÒ»°ãĞÔ´¦ÀíÔÚÕâÀïÊµÊ©¡£
+	// æ£€æŸ¥æŠ¥æ–‡æœ‰æ•ˆæ€§ï¼Œæ‰€æœ‰åè®®éƒ½éœ€è¦çš„ä¸€èˆ¬æ€§å¤„ç†åœ¨è¿™é‡Œå®æ–½ã€‚
 	public Boolean CheckPktValid() {
-//		// ×¢²áÇëÇó
+//		// æ³¨å†Œè¯·æ±‚
 //		if (packetInfo.getCmd() == ConstParam.CMD_2
 //				&& packetInfo.getType() == ConstParam.TYPE_1) {
 //			SysInfo.getPrtocolBases()[packetInfo.getCmd()].ParsePktProto(packetInfo);
 //		}
-//		// Á¬Í¨²âÊÔ±¨ÎÄ
-//		if (packetInfo.getCmd() == ConstParam.CMD_0
-//				&& packetInfo.getType() == ConstParam.TYPE_0
-//				&& packetInfo.getOpt() == ConstParam.OPT_8) {
-//			SysInfo.getPrtocolBases()[packetInfo.getCmd()].ParsePktProto(packetInfo);
-//		}
+// è¿é€šæµ‹è¯•æŠ¥æ–‡
+		if (packetInfo.getCmd() == ConstParam.CMD_0
+				&& packetInfo.getType() == ConstParam.TYPE_0
+				&& packetInfo.getOpt() == ConstParam.OPT_8) {
+			SysInfo.getPrtocolBases()[packetInfo.getCmd()].ParsePktProto(packetInfo);
+		}
 
-		// ¸ù¾İSIDÕÒµ½ÓÃ»§ĞÅÏ¢½Úµã
-		// devºÍappµÄ´¦Àí
+		// æ ¹æ®SIDæ‰¾åˆ°ç”¨æˆ·ä¿¡æ¯èŠ‚ç‚¹
+		// devå’Œappçš„å¤„ç†
 		UserNode userNode = null;
-		// Í¨¹ı±¨ÎÄsortÅĞ¶ÏÊÇdev»¹ÊÇapp
+		// é€šè¿‡æŠ¥æ–‡sortåˆ¤æ–­æ˜¯devè¿˜æ˜¯app
 		if (packetInfo.getSort() == ConstParam.SORT_2) {
 			userNode = SysInfo.getInstance()
 					.getDevNodeById(packetInfo.getSid());
-//			System.out.println("Ç°¶ËÉè±¸");
+			System.out.println("å‰ç«¯è®¾å¤‡");
 		}
 		if (packetInfo.getSort() == ConstParam.SORT_0) {
 			userNode = SysInfo.getInstance()
 					.getAppNodeById(packetInfo.getSid());
-			System.out.println("appÓÃ»§");
+			System.out.println("appç”¨æˆ·");
 		}
 		
-		// cmd=1Ê±²»´æÔÚ½Úµã¶¼´ÓÕâ¶ù½ø£¨µÚÒ»´ÎµÇÂ½È«¾Ö¶ÓÁĞÖĞ»¹²»´æÔÚ¸Ã½Úµã£©
+		// cmd=1æ—¶ä¸å­˜åœ¨èŠ‚ç‚¹éƒ½ä»è¿™å„¿è¿›ï¼ˆç¬¬ä¸€æ¬¡ç™»é™†å…¨å±€é˜Ÿåˆ—ä¸­è¿˜ä¸å­˜åœ¨è¯¥èŠ‚ç‚¹ï¼‰
 		if (userNode == null ) {
-			if(packetInfo.getCmd() == ConstParam.CMD_1 && packetInfo.getType() == ConstParam.TYPE_1){
-			// Èç¹ûÊÇdevµÇÂ½Ôò´´½¨ĞÂµÄdev½Úµã
-			// System.out.println("±¨ÎÄÖĞµÄsid" + packetInfo.getSid());
+			//if(packetInfo.getCmd() == ConstParam.CMD_1 && packetInfo.getType() == ConstParam.TYPE_1){
+			// å¦‚æœæ˜¯devç™»é™†åˆ™åˆ›å»ºæ–°çš„devèŠ‚ç‚¹
+			// System.out.println("æŠ¥æ–‡ä¸­çš„sid" + packetInfo.getSid());
 			if (packetInfo.getSort() == ConstParam.SORT_2) {
 				DeviceDao devDao = new DeviceDao();
 				DeviceInf devinf = devDao.findDevByID(packetInfo.getSid());
 				if (devinf != null) {
-					// ipºÍportĞèÒªÊÇ¾Ö²¿±äÁ¿£¬µÃµ½Ó¦´ğµÄ±¨ÎÄ»á±ä»¯£¨µôÏßµÄÇé¿ö£©
+					// ipå’Œportéœ€è¦æ˜¯å±€éƒ¨å˜é‡ï¼Œå¾—åˆ°åº”ç­”çš„æŠ¥æ–‡ä¼šå˜åŒ–ï¼ˆæ‰çº¿çš„æƒ…å†µï¼‰
 					String ip = ((InetSocketAddress) packetInfo.getIoSession()
 							.getRemoteAddress()).getAddress().getHostAddress();
 					int port = ((InetSocketAddress) packetInfo.getIoSession()
 							.getRemoteAddress()).getPort();
-					DevNode devNode = new DevNode(); // ´´½¨½Úµã
+					DevNode devNode = new DevNode(); // åˆ›å»ºèŠ‚ç‚¹
 					devNode.setIp(ip);
 					devNode.setPort(port);
 					devNode.setAccount(devinf.getUsername());
-					// System.out.println("´´½¨ĞÂ½ÚµãÊ±Êı¾İ¿âÖĞµÄdevinfµÄdeviceid:"+
+					// System.out.println("åˆ›å»ºæ–°èŠ‚ç‚¹æ—¶æ•°æ®åº“ä¸­çš„devinfçš„deviceid:"+
 					// devinf.getDeviceid());
 					devNode.setId(devinf.getDeviceid());
 					devNode.setRevPktDate(new Date());
 					devNode.setRevPktId(packetInfo.getSeq());
 					devNode.setIoSession(packetInfo.getIoSession());
-					// ¸Õ´´½¨µÄ½ÚµãµÄµÇÂ¼×´Ì¬ÖÃÎª0£¬±íÊ¾»¹Î´ÑéÖ¤
+					// åˆšåˆ›å»ºçš„èŠ‚ç‚¹çš„ç™»å½•çŠ¶æ€ç½®ä¸º0ï¼Œè¡¨ç¤ºè¿˜æœªéªŒè¯
 					devNode.setState(ConstParam.LOGIN_STATE_0);
-					// devNode.setSntPktId(0); //Ã»ÓĞ·¢ËÍ±¨ÎÄ
-					// ½«½ÚµãĞÅÏ¢Ìí¼Óµ½±¨ÎÄÖĞ ½ö½öÎªÁËÔÚProtocolLoginÖĞÈ¡»ñÈ¡½Úµãid (¿ÉÓÅ»¯) ÏÂÍ¬
+					// devNode.setSntPktId(0); //æ²¡æœ‰å‘é€æŠ¥æ–‡
+					// å°†èŠ‚ç‚¹ä¿¡æ¯æ·»åŠ åˆ°æŠ¥æ–‡ä¸­ ä»…ä»…ä¸ºäº†åœ¨ProtocolLoginä¸­å–è·å–èŠ‚ç‚¹id (å¯ä¼˜åŒ–) ä¸‹åŒ
 					packetInfo.setDevNode(devNode);
-					// ½«½ÚµãÌí¼Óµ½¶ÓÁĞ ÔÚµÇÂ¼´¦ÀíÖĞ´ÓÈ«¾Ö¶ÓÁĞÖĞÈ¡ ÏÂÍ¬
+					// å°†èŠ‚ç‚¹æ·»åŠ åˆ°é˜Ÿåˆ— åœ¨ç™»å½•å¤„ç†ä¸­ä»å…¨å±€é˜Ÿåˆ—ä¸­å– ä¸‹åŒ
 					SysInfo.getInstance().addUserNode(devNode);
 					return true;
 				}else
 					return false;
 				
 			}
-			// Èô¹ûÊÇappµÇÂ½ Ôò´´½¨app½Úµã
+			// è‹¥æœæ˜¯appç™»é™† åˆ™åˆ›å»ºappèŠ‚ç‚¹
 			else if (packetInfo.getSort() == ConstParam.SORT_0) {
 				UserDao appDao = new UserDao();
 				UserInf appInf = appDao.findAppuserByID(packetInfo.getSid());
@@ -216,12 +217,12 @@ public class ProtocolProc {
 							.getRemoteAddress()).getAddress().getHostAddress();
 					int port = ((InetSocketAddress) packetInfo.getIoSession()
 							.getRemoteAddress()).getPort();
-					AppNode appNode = new AppNode(); // ´´½¨½Úµã
+					AppNode appNode = new AppNode(); // åˆ›å»ºèŠ‚ç‚¹
 					appNode.setIp(ip);
 					appNode.setPort(port);
-					// ÓÃ»§ÕËºÅ ProtocolLogin»áÈ¡³öÀ´¶Ô±È£¨ÊÇÓÃ»§Ãû¶ø²»ÊÇÕæÊµĞÕÃû£©
+					// ç”¨æˆ·è´¦å· ProtocolLoginä¼šå–å‡ºæ¥å¯¹æ¯”ï¼ˆæ˜¯ç”¨æˆ·åè€Œä¸æ˜¯çœŸå®å§“åï¼‰
 					appNode.setAccount(appInf.getUserName());
-					// System.out.println("´´½¨ĞÂ½ÚµãÊ±Êı¾İ¿âÖĞµÄdevinfµÄdeviceid:"+
+					// System.out.println("åˆ›å»ºæ–°èŠ‚ç‚¹æ—¶æ•°æ®åº“ä¸­çš„devinfçš„deviceid:"+
 					// appInf.getUserID());
 					appNode.setId(appInf.getUserID());
 					appNode.setRevPktDate(new Date());
@@ -230,25 +231,25 @@ public class ProtocolProc {
 					appNode.setState(ConstParam.LOGIN_STATE_0);
 					// appNode.setSntPktId(0);
 					packetInfo.setAppNode(appNode);
-					SysInfo.getInstance().addUserNode(appNode); // ½«½ÚµãÌí¼Óµ½¶ÓÁĞ
-					System.out.println("´´½¨ĞÂ½ÚµãµÄid£º" + packetInfo.getSid());
+					SysInfo.getInstance().addUserNode(appNode); // å°†èŠ‚ç‚¹æ·»åŠ åˆ°é˜Ÿåˆ—
+					System.out.println("åˆ›å»ºæ–°èŠ‚ç‚¹çš„idï¼š" + packetInfo.getSid());
 					return true;
 				}else
 					return false;
 				
 			}
 			else{
-				System.out.print("²»Ö§³Ö");
+				System.out.print("ä¸æ”¯æŒ");
 				return false;
 			}
-			}else{
-				System.out.print("´íÎó");
+			/*}else{
+				System.out.print("æœªç™»å½•æ—¶æ— èŠ‚ç‚¹ï¼Œå»æ‰è¿™ä¸ªæ¡ä»¶ï¼Œå¯ç»§ç»­æµ‹è¯•");
 				return false;
-			}
+			}*/
 		}
-		// 1.ÇëÇóÑéÖ¤£¨µÇÂ¼ÇëÇóºó·µ»ØÇëÇóÑéÖ¤µÄ±¨ÎÄ£©£¬2.µÇÂ¼ÇëÇó£¨µôÏß »¹Ã»À´µÃ¼°É¾³ıÈ«¾Ö¶ÓÁĞÖĞµÄ½Úµã£©£¬3.±£»î±¨ÎÄ´ÓÕâ¶ù½ø£¨½Úµã´æÔÚÊ±£©
+		// 1.è¯·æ±‚éªŒè¯ï¼ˆç™»å½•è¯·æ±‚åè¿”å›è¯·æ±‚éªŒè¯çš„æŠ¥æ–‡ï¼‰ï¼Œ2.ç™»å½•è¯·æ±‚ï¼ˆæ‰çº¿ è¿˜æ²¡æ¥å¾—åŠåˆ é™¤å…¨å±€é˜Ÿåˆ—ä¸­çš„èŠ‚ç‚¹ï¼‰ï¼Œ3.ä¿æ´»æŠ¥æ–‡ä»è¿™å„¿è¿›ï¼ˆèŠ‚ç‚¹å­˜åœ¨æ—¶ï¼‰
 		if (userNode != null) {
-			// ¼ì²éÔ´IPºÍ¶Ë¿Ú£¬¿´ÊÇ·ñ±ä»¯
+			// æ£€æŸ¥æºIPå’Œç«¯å£ï¼Œçœ‹æ˜¯å¦å˜åŒ–
 			String ip = ((InetSocketAddress) packetInfo.getIoSession()
 					.getRemoteAddress()).getAddress().getHostAddress();
 			int port = ((InetSocketAddress) packetInfo.getIoSession()
@@ -258,29 +259,29 @@ public class ProtocolProc {
 				userNode.setIp(ip);
 				userNode.setPort(port);
 				// userNode.setIoSession(packetInfo.getIoSession());
-				// //²»ĞèÒª¸üĞÂiosession
-				// ÒòÎªÔÚ½ÓÊÕµ½±¨ÎÄÊ±¶¼»á¸üĞÂ£¬¼´Ê¹ÔÚÕâ¶ù¼ì²é³öipºÍport²»Ò»ÑùÒ²²»Ó°ÏìiosessionµÄ¸üĞÂ
+				// //ä¸éœ€è¦æ›´æ–°iosession
+				// å› ä¸ºåœ¨æ¥æ”¶åˆ°æŠ¥æ–‡æ—¶éƒ½ä¼šæ›´æ–°ï¼Œå³ä½¿åœ¨è¿™å„¿æ£€æŸ¥å‡ºipå’Œportä¸ä¸€æ ·ä¹Ÿä¸å½±å“iosessionçš„æ›´æ–°
 			}
 
 			// Date revPktDate = new Date();
-			userNode.setRevPktDate(new Date()); // ¼ÇÂ¼×î½ü½ÓÊÕ±¨ÎÄÊ±¼ä
-			// dev.setRevPktId(packetInfo.getSeq()); ²»ÄÜÔÚÕâ¶ù¼ÇÂ¼ ÏÂÃæ»¹Òª±È½Ï
-			if (userNode instanceof DevNode) { // Ò²¿ÉÒÔÍ¨¹ı±¨ÎÄsortÅĞ¶ÏÊÇÄÄÖÖ½Úµã
+			userNode.setRevPktDate(new Date()); // è®°å½•æœ€è¿‘æ¥æ”¶æŠ¥æ–‡æ—¶é—´
+			// dev.setRevPktId(packetInfo.getSeq()); ä¸èƒ½åœ¨è¿™å„¿è®°å½• ä¸‹é¢è¿˜è¦æ¯”è¾ƒ
+			if (userNode instanceof DevNode) { // ä¹Ÿå¯ä»¥é€šè¿‡æŠ¥æ–‡sortåˆ¤æ–­æ˜¯å“ªç§èŠ‚ç‚¹
 				DevNode devNode = (DevNode) userNode;
 				packetInfo.setDevNode(devNode);
-				// ¸üĞÂdevnodeĞÅÏ¢£¬ÔÚÈ«¾ÖĞÅÏ¢¶ÓÁĞÖĞÒ²Ó¦¸Ã¸üĞÂ£¬ºóÃæ´¦ÀíµÄÊ±ºòÖ±½Ó´Ó¶ÓÁĞÖĞÈ¥½Úµã
+				// æ›´æ–°devnodeä¿¡æ¯ï¼Œåœ¨å…¨å±€ä¿¡æ¯é˜Ÿåˆ—ä¸­ä¹Ÿåº”è¯¥æ›´æ–°ï¼Œåé¢å¤„ç†çš„æ—¶å€™ç›´æ¥ä»é˜Ÿåˆ—ä¸­å»èŠ‚ç‚¹
 				SysInfo.getInstance().addUserNode(devNode);
 				return true;
 			}
 			if (userNode instanceof AppNode) {
 				AppNode appNode = (AppNode) userNode;
 				packetInfo.setAppNode(appNode);
-				// ¸üĞÂdevnodeĞÅÏ¢£¬ÔÚÈ«¾ÖĞÅÏ¢¶ÓÁĞÖĞÒ²Ó¦¸Ã¸üĞÂ£¬ºóÃæ´¦ÀíµÄÊ±ºòÖ±½Ó´Ó¶ÓÁĞÖĞÈ¥½Úµã
+				// æ›´æ–°devnodeä¿¡æ¯ï¼Œåœ¨å…¨å±€ä¿¡æ¯é˜Ÿåˆ—ä¸­ä¹Ÿåº”è¯¥æ›´æ–°ï¼Œåé¢å¤„ç†çš„æ—¶å€™ç›´æ¥ä»é˜Ÿåˆ—ä¸­å»èŠ‚ç‚¹
 				SysInfo.getInstance().addUserNode(appNode);
 				return true;
 			}
 			
-//			// Èç¹û²»ÊÇ±£»î±¨ÎÄºÍ×ª·¢±¨ÎÄ£¬½øĞĞÈçÏÂ´¦Àí £¿£¿£¿
+//			// å¦‚æœä¸æ˜¯ä¿æ´»æŠ¥æ–‡å’Œè½¬å‘æŠ¥æ–‡ï¼Œè¿›è¡Œå¦‚ä¸‹å¤„ç† ï¼Ÿï¼Ÿï¼Ÿ
 //			if ((packetInfo.getOpt() & 0x01) == 0
 //					&& !(packetInfo.getCmd() == ConstParam.CMD_1 && (packetInfo
 //							.getType() == ConstParam.TYPE_6 || packetInfo
@@ -289,14 +290,14 @@ public class ProtocolProc {
 //				
 //				if (packetInfo.getSeq() > userNode.getRevPktId()) {
 //					
-//					System.out.println("µÚÒ»´ÎµÇÂ¼ÑéÖ¤Ó¦´ğ ´ÓÕâ¶ù½øÈë");
+//					System.out.println("ç¬¬ä¸€æ¬¡ç™»å½•éªŒè¯åº”ç­” ä»è¿™å„¿è¿›å…¥");
 //					userNode.setRevPktId(packetInfo.getSeq());
-//					System.out.println("Èë¿Ú2");
+//					System.out.println("å…¥å£2");
 //					SysInfo.getPrtocolBases()[packetInfo.getCmd()].ParsePktProto(packetInfo);
 //				}
 //			} else {
-//				//±£»î±¨ÎÄ´ÓÕâ¶ù½ø£¨½Úµã´æÔÚÊ±£© µÇ³ö±¨ÎÄ  µÇ³öÇëÇó´ÓÕâ¶ù½ø				
-//				System.out.println("ÆäËûĞ­Òé´¦Àí´ÓÕâ¶ù½ø");
+//				//ä¿æ´»æŠ¥æ–‡ä»è¿™å„¿è¿›ï¼ˆèŠ‚ç‚¹å­˜åœ¨æ—¶ï¼‰ ç™»å‡ºæŠ¥æ–‡  ç™»å‡ºè¯·æ±‚ä»è¿™å„¿è¿›				
+//				System.out.println("å…¶ä»–åè®®å¤„ç†ä»è¿™å„¿è¿›");
 //				SysInfo.getPrtocolBases()[packetInfo.getCmd()].ParsePktProto(packetInfo);
 //			}
 		}
