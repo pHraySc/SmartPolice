@@ -121,31 +121,31 @@
     	
     	<div class="upload_info fr">
         	<div class="list_margin">
-        		<form action="post">
+        		<form action="AddServers" method="post">
         			<ul class="upload_list">
         			 <li class="upload_one">
         				<i>服务器类型:</i>
-        				<input type="text" id="device_name" class="same same_img1" name="" value="">
+        				<input type="text" id="device_name" class="same same_img1" name="addServers.ServerType" value="">
         				<!-- <span class="prompt"></span> -->
         				<strong></strong>
         			 </li>
         			<li class="upload_one upload_one_xin">
         			    
         				<i>内存大小:</i>
-        				<input type="text" id="device_num" class="same same_img2" name="" value="">
+        				<input type="text" id="device_num" class="same same_img2" name="addServers.Memory" value="">
         				<!-- <span class="prompt"></span> -->
         				<strong></strong>
         			</li>
         			<li class="upload_one upload_one_xin">
         			
         		        <i>CPU型号:</i>
-        				<input type="text" id="device_CPU" class="same same_img3" name="" value="">
+        				<input type="text" id="device_CPU" class="same same_img3" name="addServers.CPUVersion" value="">
         				<!-- <span class="prompt"></span> -->	
         				<strong></strong>
         			</li>
         			<li class="upload_one">
         		    <i class="upload_one_i">服务器描述:</i>
-        		    <textarea rows="6" cols="40" name="" id="introduce" class="same"></textarea>
+        		    <textarea rows="6" cols="40" name="addServers.ServerDesc" id="introduce" class="same"></textarea>
         				<!-- <span class="prompt"></span> -->	
         			</li>
         			<li class="btn">

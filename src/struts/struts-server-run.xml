@@ -5,17 +5,17 @@
 <struts>
 	<package name="server-run" extends="struts-default">
 		<action name="AddServers" method="AddServers" class="serverRunAction">
-			<result name="addservers"></result>
+			<result name="addservers">/Manager/notifyServer.jsp</result>
 			
 		</action>
 		
 		<action name="PlatMsgAnounce" method="PlatMsgAnounce" class="serverRunAction">
-			<result name="platmsganounce"></result>
+			<result name="platmsganounce">/Manager/notifyIssued.jsp</result>
 
 		</action>
 		
 		<action name="SystemRunInfo" method="SystemRunInfo" class="serverRunAction">
-			<result name="systemruninfo" ></result>
+			<result name="systemruninfo" >/Manager/sysOperationInfo.jsp</result>
 
 		</action>			
 	</package> 

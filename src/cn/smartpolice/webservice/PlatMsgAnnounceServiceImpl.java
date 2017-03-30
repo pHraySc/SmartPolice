@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.smartpolice.dao.PlatMsgAnnounceDao;
+import cn.smartpolice.dao.PlatMsgAnnounceDaoImpl;
 import cn.smartpolice.hibernate.PlatMsgAnnounce;
 
 @Service("platMsgAnnounceService")
@@ -20,5 +21,10 @@ public class PlatMsgAnnounceServiceImpl implements PlatMsgAnnounceService {
 		if(announce != null){
 			announceDao.AddPlatMsgToDB(announce);
 		}
+	}
+	
+	public static void main(String[] args) {
+		PlatMsgAnnounceDaoImpl announceDaoImpl = new PlatMsgAnnounceDaoImpl();
+		announceDaoImpl.AddPlatMsgToDB(null);
 	}
 }

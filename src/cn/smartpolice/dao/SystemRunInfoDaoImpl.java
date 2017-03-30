@@ -3,8 +3,8 @@ package cn.smartpolice.dao;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.management.Query;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.transform.Transformers;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -25,10 +25,8 @@ public class SystemRunInfoDaoImpl implements SystemRunInfoDao{
 	@Override
 	public List getSystemRunInfoFromDB() {
 		session = this.hibernateTemplate.getSessionFactory().getCurrentSession();
-		String sql = "Select * from SYSTEMRUNINFO";
-		List info = (List)session.createSQLQuery(sql).
-				setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+		Query query = session.createQuery("from SystemRunInfo");
+		List info = query.list();
 		return info;
 	}
-	
 }

@@ -8,7 +8,7 @@ public class SystemRunInfo {
 	private String FileOpenedNum;
 	private String MaxLoginDeviceNum;
 	private String AppLoginNum;
-	private String AchiveMsgNum;
+	private String AchiveMsgNum;	//achieve
 	private String SendMsgNum;
 	public String getCurrentUserNum() {
 		return CurrentUserNum;

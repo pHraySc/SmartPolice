@@ -19,6 +19,7 @@ public class AddServersDaoImpl implements AddServersDao{
 
 	@Override
 	public void AddServers(AddServers s) {
+		System.out.println(hibernateTemplate);
 		session = this.hibernateTemplate.getSessionFactory().getCurrentSession();
 		session.save(s);
 	}

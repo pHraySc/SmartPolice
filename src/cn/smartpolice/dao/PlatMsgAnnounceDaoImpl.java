@@ -20,6 +20,7 @@ public class PlatMsgAnnounceDaoImpl implements PlatMsgAnnounceDao{
 
 	@Override
 	public void AddPlatMsgToDB(PlatMsgAnnounce announce) {
+		System.out.println(hibernateTemplate);
 		session = this.hibernateTemplate.getSessionFactory().getCurrentSession();
 		session.save(announce);
 	}

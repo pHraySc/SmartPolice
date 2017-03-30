@@ -4,8 +4,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import cn.smartpolice.hibernate.AddServers;
 import cn.smartpolice.dao.AddServersDao;
+import cn.smartpolice.dao.AddServersDaoImpl;
 
 @Service("addServersService")
 @Transactional(readOnly=false)
@@ -19,5 +21,9 @@ public class AddServersServiceImpl implements AddServersService {
 		if(addServers != null){
 			addServersDao.AddServers(addServers);
 		}
+	}
+	public static void main(String[] args) {
+		AddServersDaoImpl addServersDaoImpl = new AddServersDaoImpl();
+		addServersDaoImpl.AddServers(null);
 	}
 }

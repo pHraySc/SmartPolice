@@ -16,8 +16,10 @@ import cn.smartpolice.hibernate.SystemRunInfo;
 import cn.smartpolice.webservice.AddServersService;
 import cn.smartpolice.webservice.PlatMsgAnnounceService;
 import cn.smartpolice.webservice.SystemRunInfoService;
+import cn.smartpolice.webservice.SystemRunInfoServiceImpl;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.xml.internal.ws.api.message.Message;
 
 @SuppressWarnings("serial")
 @Controller("serverRunAction")
@@ -43,7 +45,7 @@ public class ServerRunAction extends ActionSupport {
 	HttpServletRequest request = ServletActionContext.getRequest();
 	
 	HttpSession session = request.getSession();
-
+	
 	public AddServers getAddServers() {
 		return addServers;
 	}
